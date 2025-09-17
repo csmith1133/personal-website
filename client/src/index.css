@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #FFFDF2;
+    color: #171717;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  /* Modern Buttons */
+  .btn-primary {
+    @apply bg-noir-900 hover:bg-noir-800 text-white font-semibold py-4 px-8 rounded-xl hover:shadow-xl flex items-center justify-center;
+    transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out, transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, background-color, box-shadow;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0) scale(0.98);
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-noir-900 text-noir-900 hover:bg-noir-900 hover:text-white font-semibold py-4 px-8 rounded-xl flex items-center justify-center;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out, transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, background-color, color;
+  }
+  
+  .btn-secondary:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
+  
+  .btn-secondary:active {
+    transform: translateY(0) scale(0.98);
+  }
+  
+  .btn-accent {
+    @apply bg-moss-600 hover:bg-moss-700 text-white font-semibold py-4 px-8 rounded-xl hover:shadow-xl;
+    transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out, transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, background-color, box-shadow;
+  }
+  
+  .btn-accent:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
+  
+  .btn-accent:active {
+    transform: translateY(0) scale(0.98);
+  }
+  
+  /* Typography */
+  .section-title {
+    @apply text-5xl md:text-7xl font-bold text-noir-900 mb-8 tracking-tight;
+  }
+  
+  .section-subtitle {
+    @apply text-xl md:text-2xl text-noir-600 mb-16 max-w-4xl mx-auto font-medium leading-relaxed;
+  }
+  
+  .modern-title {
+    @apply text-4xl md:text-6xl font-bold text-noir-900 tracking-tight;
+  }
+  
+  .modern-subtitle {
+    @apply text-lg md:text-xl text-noir-600 font-medium;
+  }
+  
+  /* Cards & Containers */
+  .card {
+    @apply bg-ivory-200/60 backdrop-blur-sm rounded-2xl shadow-xl hover:shadow-2xl border border-ivory-100/50;
+    transition: box-shadow 0.25s ease-out, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+  }
+  
+  .card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .glass-card {
+    @apply bg-ivory-200/30 backdrop-blur-md border border-ivory-100/40 rounded-2xl shadow-xl;
+  }
+  
+  .modern-container {
+    @apply max-w-8xl mx-auto px-8 lg:px-12 xl:px-16;
+  }
+  
+  /* Logo & Branding */
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #171717;
+    letter-spacing: -0.02em;
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .logo-text:hover {
+    @apply scale-105 transition-transform duration-300;
+  }
+  
+  /* Gradients & Effects */
+  .gradient-text {
+    @apply bg-gradient-to-r from-moss-600 via-moss-500 to-moss-700 bg-clip-text text-transparent;
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+    display: inline-block;
+    white-space: nowrap;
+    line-height: 1.2;
+    padding-bottom: 0.1em;
+  }
+  
+  /* Logo Styles */
+  .logo-brush {
+    font-family: 'Caveat', cursive;
+    transform: rotate(-5deg);
+    line-height: 0.75;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    color: #171717;
+  }
+  
+  .logo-charlie {
+    font-size: 1.8rem;
+    font-weight: 600;
+    display: block;
+  }
+  
+  .logo-smith {
+    font-size: 1.6rem;
+    font-weight: 500;
+    display: block;
+    margin-left: 0.25rem;
+    opacity: 0.9;
+    margin-top: -0.15rem;
+  }
+  
+/* Large centered navbar logo */
+.logo-large .logo-charlie {
+  font-size: 2.8rem;
+  font-weight: 700;
+  display: block;
+}
+
+.logo-large .logo-smith {
+  font-size: 2.4rem;
+  font-weight: 600;
+  display: block;
+  margin-left: 0.3rem;
+  opacity: 0.9;
+  margin-top: -0.2rem;
+}
+  
+  .gradient-bg {
+    @apply bg-gradient-to-br from-ivory-300 via-ivory-200 to-ivory-100;
+  }
+  
+  .modern-gradient {
+    @apply bg-gradient-to-br from-ivory-50 via-ivory-300 to-ivory-200;
+  }
+  
+  /* Navigation */
+  .nav-link {
+    @apply text-noir-700 hover:text-noir-900 font-medium relative;
+    transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: color;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-noir-900 group-hover:w-full;
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: width;
+  }
+  
+  .nav-link.active {
+    @apply text-noir-900;
+  }
+  
+  .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  /* Form Elements */
+  .modern-input {
+    @apply w-full px-4 py-3 bg-ivory-200/80 border border-sage-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-moss-500 focus:border-transparent;
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out, background-color 0.15s ease-out;
+    will-change: border-color, box-shadow;
+  }
+  
+  .modern-textarea {
+    @apply w-full px-4 py-3 bg-ivory-200/80 border border-sage-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-moss-500 focus:border-transparent resize-none;
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out, background-color 0.15s ease-out;
+    will-change: border-color, box-shadow;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Fix for large text descender cutoff */
+  .text-5xl, .text-6xl, .text-7xl {
+    line-height: 1.1;
+    padding-bottom: 0.05em;
+  }
+  
+  .text-4xl {
+    line-height: 1.15;
+    padding-bottom: 0.03em;
+  }
+  
+  .backdrop-blur-sm {
+    backdrop-filter: blur(8px);
+  }
+  
+  .backdrop-blur {
+    backdrop-filter: blur(12px);
+  }
+  
+  .backdrop-blur-xl {
+    backdrop-filter: blur(24px);
+  }
+}
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFDF2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A3A3A3;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #737373;
+}
+
+/* Smooth transitions - optimized */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  will-change: auto;
+}
+
+/* Modern Focus Styles */
+.focus-visible:focus {
+  @apply outline-none ring-2 ring-moss-500 ring-offset-2 ring-offset-ivory-300;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s infinite;
+}
+
+.animate-bounce-gentle {
+  animation: bounce 2s infinite;
+}
+
+/* Stagger Animation Delays */
+.delay-75 { animation-delay: 75ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-1000 { animation-delay: 1000ms; }

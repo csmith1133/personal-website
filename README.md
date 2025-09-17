@@ -1,2 +1,238 @@
-# personal-website
-Personal portfolio website showcasing my projects, skills, and experience. Built with modern web technologies (e.g., React, Next.js). Features sections such as About, Projects, and Contact. Deployed using [your deployment platform, e.g., Vercel or Netlify].
+# Personal Portfolio Website 🚀
+
+A modern, responsive personal portfolio website built with React and Node.js, showcasing projects, skills, and experience with beautiful animations and interactive elements.
+
+## ✨ Features
+
+- **Modern Design**: Clean, professional design with dark/light mode toggle
+- **Responsive**: Fully responsive design that works on all devices
+- **Interactive Animations**: Smooth animations using Framer Motion
+- **Contact Form**: Working contact form with backend integration
+- **Project Showcase**: Dynamic project gallery with filtering
+- **Skills Display**: Interactive skills section with proficiency levels
+- **SEO Optimized**: Meta tags, structured data, and performance optimized
+- **Fast Loading**: Optimized images and code splitting
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 18** - Modern React with hooks
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Animation library
+- **React Router** - Client-side routing
+- **Axios** - HTTP client
+- **React Icons** - Icon library
+- **React Toastify** - Toast notifications
+
+### Backend
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **Nodemailer** - Email handling
+- **Express Validator** - Input validation
+- **Express Rate Limit** - Rate limiting
+- **CORS & Helmet** - Security middleware
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/charles-smith/personal-website.git
+   cd personal-website
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm run install-all
+   ```
+
+3. **Set up environment variables**
+   
+   Create a `.env` file in the `server` directory:
+   ```env
+   # Server Configuration
+   PORT=5000
+   NODE_ENV=development
+   CLIENT_URL=http://localhost:3000
+
+   # Email Configuration (for contact form)
+   EMAIL_USER=your-email@gmail.com
+   EMAIL_PASS=your-app-password
+   CONTACT_EMAIL=your-contact-email@gmail.com
+
+   # Security
+   JWT_SECRET=your-jwt-secret-key-here
+   ```
+
+4. **Start the development servers**
+   ```bash
+   npm run dev
+   ```
+
+   This will start:
+   - Frontend: http://localhost:3000
+   - Backend: http://localhost:5000
+
+## 📁 Project Structure
+
+```
+personal-website/
+├── client/                 # React frontend
+│   ├── public/            # Static files
+│   ├── src/
+│   │   ├── components/    # React components
+│   │   ├── context/       # React context
+│   │   ├── App.js         # Main App component
+│   │   └── index.js       # Entry point
+│   ├── package.json
+│   └── tailwind.config.js
+├── server/                # Node.js backend
+│   ├── index.js          # Express server
+│   └── package.json
+├── package.json          # Root package.json
+└── README.md
+```
+
+## 🎨 Customization
+
+### Personal Information
+1. Update personal details in:
+   - `client/src/components/Hero.js`
+   - `client/src/components/About.js`
+   - `client/src/components/Contact.js`
+   - `client/src/components/Footer.js`
+
+### Projects Data
+- Modify the projects array in `server/index.js` or connect to a database
+- Add your project images to `client/public/images/`
+
+### Skills & Technologies
+- Update the skills object in `server/index.js`
+- Customize skill icons in `client/src/components/Skills.js`
+
+### Styling
+- Customize colors in `client/tailwind.config.js`
+- Modify animations in `client/src/index.css`
+
+### Contact Form
+- Set up email credentials in server `.env` file
+- For Gmail, use App Passwords for `EMAIL_PASS`
+
+## 🚀 Deployment
+
+### Frontend (Netlify/Vercel)
+1. Build the frontend:
+   ```bash
+   cd client && npm run build
+   ```
+2. Deploy the `build` folder to your hosting platform
+
+### Backend (Heroku/Railway/Digital Ocean)
+1. Set environment variables on your hosting platform
+2. Deploy the `server` directory
+3. Update `CLIENT_URL` in backend env to your frontend URL
+
+### Full Stack (Railway/Render)
+1. Use the root `package.json` for deployment
+2. Set build command: `npm run build`
+3. Set start command: `npm start`
+
+## 📧 Email Setup
+
+For the contact form to work:
+
+1. **Gmail Setup**:
+   - Enable 2FA on your Google account
+   - Generate an App Password
+   - Use the App Password as `EMAIL_PASS`
+
+2. **Other Email Providers**:
+   - Update the transporter configuration in `server/index.js`
+
+## 🔧 Available Scripts
+
+### Root Directory
+- `npm run dev` - Start both frontend and backend
+- `npm run install-all` - Install all dependencies
+- `npm run build` - Build frontend for production
+- `npm start` - Start production server
+
+### Client Directory
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run tests
+
+### Server Directory
+- `npm start` - Start production server
+- `npm run dev` - Start development server with nodemon
+
+## 🌟 Performance Optimizations
+
+- **Image Optimization**: All images are optimized for web
+- **Code Splitting**: React lazy loading for components
+- **Caching**: Proper HTTP caching headers
+- **Minification**: CSS and JS minification in production
+- **Compression**: Gzip compression enabled
+
+## 🔒 Security Features
+
+- **Input Validation**: All form inputs are validated
+- **Rate Limiting**: API rate limiting to prevent abuse
+- **CORS**: Configured for secure cross-origin requests
+- **Helmet**: Security headers implemented
+- **XSS Protection**: Input sanitization
+
+## 📱 Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **Email not sending**:
+   - Check email credentials in `.env`
+   - Verify App Password for Gmail
+   - Check firewall/network settings
+
+2. **Styles not loading**:
+   - Run `npm run build` in client directory
+   - Check Tailwind CSS configuration
+
+3. **API errors**:
+   - Ensure backend server is running
+   - Check environment variables
+   - Verify CORS settings
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## 📞 Support
+
+If you have any questions or need help with setup, feel free to reach out:
+
+- Email: charles.smith@example.com
+- LinkedIn: [Charles Smith](https://linkedin.com/in/charles-smith)
+- GitHub: [@charles-smith](https://github.com/charles-smith)
+
+---
+
+**Made with ❤️ by Charles Smith**
