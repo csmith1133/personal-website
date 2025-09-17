@@ -142,6 +142,34 @@ personal-website/
 2. Set build command: `npm run build`
 3. Set start command: `npm start`
 
+
+### Deployment with Docker and Docker Compose
+
+# API
+
+```bash
+sudo docker build -t charlie_personal_website_backend_image ../charlie-personal-website/server
+
+sudo docker run -d --name charlie_personal_website_backend --rm \
+  -p 8003:5000 \
+  --env-file ../charlie-personal-website/server/.env \
+  charlie_personal_website_backend_image
+
+```
+
+# Web (bake API URL so it can call the backend)
+
+```bash
+sudo docker build -t charlie_personal_website_frontend_image \
+  --build-arg REACT_APP_API_URL=http://localhost:8003 \
+  ../charlie-personal-website/client
+
+sudo docker run -d --name charlie_personal_website_frontend --rm \
+  -p 8083:3000 \
+  charlie_personal_website_frontend_image
+
+```
+
 ## 📧 Email Setup
 
 For the contact form to work:
