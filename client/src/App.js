@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Layout Components
 import Layout from './components/Layout';
 import LoadingScreen from './components/LoadingScreen';
+import ScrollToTop from './components/ScrollToTop';
 
 // Pages
 import About from './pages/About';
@@ -36,6 +37,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
+        <ScrollToTop />
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />

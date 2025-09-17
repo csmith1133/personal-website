@@ -123,7 +123,12 @@ const Contact = () => {
 
               {/* Quick Info Cards */}
               {/* Response Time */}
-              <div className="card p-4">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="card p-4"
+              >
                 <div className="flex items-center">
                   <div className="w-10 h-10 bg-accent-100 rounded-lg flex items-center justify-center mr-3">
                     <svg className="w-5 h-5 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,10 +140,15 @@ const Contact = () => {
                     <p className="text-noir-600 text-sm">Usually within 24 hours</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Availability */}
-              <div className="card p-4">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="card p-4"
+              >
                 <div className="flex items-center">
                   <div className="w-10 h-10 bg-success-100 rounded-lg flex items-center justify-center mr-3">
                     <svg className="w-5 h-5 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -150,10 +160,15 @@ const Contact = () => {
                     <p className="text-noir-600 text-sm">Open to new projects</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Time Zone */}
-              <div className="card p-4">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="card p-4"
+              >
                 <div className="flex items-center">
                   <div className="w-10 h-10 bg-warning-100 rounded-lg flex items-center justify-center mr-3">
                     <svg className="w-5 h-5 text-warning-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,7 +180,7 @@ const Contact = () => {
                     <p className="text-noir-600 text-sm">9 AM - 6 PM CST</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Right Column - Contact Form */}

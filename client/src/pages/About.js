@@ -107,13 +107,13 @@ const About = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="py-20">
+      <section className="py-16">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-noir-900 mb-2">
               Skills & <span className="gradient-text">Technologies</span>
@@ -150,13 +150,13 @@ const About = () => {
       </section>
 
       {/* Personal Values Section */}
-      <section className="py-20 bg-ivory-200/30">
+      <section className="py-16 bg-ivory-200/30">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-noir-900 mb-2">
               Core <span className="gradient-text">Values</span>

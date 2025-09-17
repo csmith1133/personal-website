@@ -307,7 +307,7 @@ const Work = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-noir-900 mb-6">
               My <span className="gradient-text">Work</span>
             </h1>
-            <p className="text-xl md:text-2xl text-noir-600 mb-8 font-medium leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-noir-600 mb-6 font-medium leading-relaxed max-w-3xl mx-auto">
               Projects and professional milestones that showcase my passion for innovative solutions.
             </p>
             <div className="flex justify-center">
@@ -344,7 +344,7 @@ const Work = () => {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+          <div className="grid lg:grid-cols-2 gap-8 mb-8">
             {projects.filter(project => project.featured).map((project, index) => (
               <motion.div
                 key={project.id}
@@ -479,13 +479,13 @@ const Work = () => {
       </section>
 
       {/* Professional Timeline */}
-      <section className="py-20 bg-ivory-200/30">
+      <section className="py-16 bg-ivory-200/30">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-noir-900 mb-2">
               Professional <span className="gradient-text">Timeline</span>
