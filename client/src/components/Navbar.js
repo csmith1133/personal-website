@@ -15,7 +15,6 @@ const Navbar = () => {
 
   const rightNavItems = [
     { name: 'Work', path: '/work' },
-    { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -37,13 +36,9 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-      className={`fixed top-0 left-0 right-0 z-40 ${
-        isScrolled
-          ? 'bg-ivory-300/95 backdrop-blur-xl shadow-sm'
-          : 'bg-ivory-300/80'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 bg-ivory-300"
       style={{
-        transition: 'background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+        backgroundColor: '#E4E4DE'
       }}
     >
       <div className="modern-container">
@@ -157,7 +152,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-ivory-300/95 backdrop-blur-xl"
+            className="md:hidden bg-ivory-300"
           >
             <div className="px-6 py-4 space-y-2">
               {[...leftNavItems, ...rightNavItems].map((item, index) => (
@@ -172,8 +167,8 @@ const Navbar = () => {
                     onClick={handleMobileNavClick}
                     className={`block w-full text-left px-4 py-3 text-lg font-medium transition-all duration-300 rounded-xl ${
                       location.pathname === item.path 
-                        ? 'text-noir-900 bg-ivory-200/80' 
-                        : 'text-noir-700 hover:text-noir-900 hover:bg-ivory-100/80'
+                        ? 'text-noir-900 bg-ivory-400/80' 
+                        : 'text-noir-700 hover:text-noir-900 hover:bg-ivory-200/80'
                     }`}
                   >
                     {item.name}

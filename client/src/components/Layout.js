@@ -5,7 +5,7 @@ import ScrollToTop from './ScrollToTop';
 
 const Layout = ({ children }) => {
   return (
-    <div className="min-h-screen bg-ivory-300 transition-colors duration-300">
+    <div className="min-h-screen bg-ivory-300">
       <Navbar />
       <main className="pt-20">
         {children}
