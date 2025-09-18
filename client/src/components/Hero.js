@@ -14,12 +14,12 @@ const Hero = () => {
   const socialLinks = [
     {
       icon: FaGithub,
-      href: 'https://github.com/charles-smith',
+      href: 'https://github.com/csmith1133',
       label: 'GitHub'
     },
     {
       icon: FaLinkedin,
-      href: 'https://linkedin.com/in/charles-smith',
+      href: 'https://linkedin.com/in/csmithunt',
       label: 'LinkedIn'
     },
     {

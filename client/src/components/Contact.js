@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import { FaEnvelope, FaGithub, FaLinkedin, FaMapMarkerAlt, FaPaperPlane, FaPhone, FaTwitter } from 'react-icons/fa';
+import { FaEnvelope, FaGithub, FaLinkedin, FaMapMarkerAlt, FaPaperPlane, FaPhone } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 import { toast } from 'react-toastify';
 
@@ -44,20 +44,14 @@ const Contact = () => {
     {
       icon: FaLinkedin,
       label: 'LinkedIn',
-      href: 'https://linkedin.com/in/charles-smith',
+      href: 'https://linkedin.com/in/csmithunt',
       color: 'hover:text-blue-600'
     },
     {
       icon: FaGithub,
       label: 'GitHub',
-      href: 'https://github.com/charles-smith',
+      href: 'https://github.com/csmith1133',
       color: 'hover:text-gray-800 dark:hover:text-gray-200'
-    },
-    {
-      icon: FaTwitter,
-      label: 'Twitter',
-      href: 'https://twitter.com/charles-smith',
-      color: 'hover:text-blue-400'
     }
   ];
 
@@ -363,7 +357,7 @@ const Contact = () => {
                 Schedule a Call
               </motion.a>
               <motion.a
-                href="https://linkedin.com/in/charles-smith"
+                href="https://linkedin.com/in/csmithunt"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}

@@ -30,7 +30,7 @@ const Projects = () => {
             title: "FinOps Analytics Platform",
             description: "Advanced financial operations analytics platform built with Python, Streamlit, and Snowflake for real-time cost optimization and budget tracking.",
             technologies: ["Python", "Streamlit", "Snowflake", "Docker", "Kubernetes"],
-            github: "https://github.com/charles-smith/na-finops",
+            github: "https://github.com/csmith1133/na-finops",
             live: null,
             image: "/api/placeholder/400/250",
             featured: true
@@ -40,7 +40,7 @@ const Projects = () => {
             title: "Data Pipeline Automation",
             description: "Automated data processing pipeline using Apache Airflow for ETL operations with comprehensive monitoring and alerting.",
             technologies: ["Apache Airflow", "Python", "Docker", "PostgreSQL"],
-            github: "https://github.com/charles-smith/airflow-community",
+            github: "https://github.com/csmith1133/airflow-community",
             live: null,
             image: "/api/placeholder/400/250",
             featured: true
@@ -50,7 +50,7 @@ const Projects = () => {
             title: "Oracle BICC Integration",
             description: "Enterprise data integration solution for Oracle Business Intelligence Cloud Connector with automated schema management.",
             technologies: ["Python", "Oracle", "Spark", "Docker"],
-            github: "https://github.com/charles-smith/gbi-oracle-bicc",
+            github: "https://github.com/csmith1133/gbi-oracle-bicc",
             live: null,
             image: "/api/placeholder/400/250",
             featured: false

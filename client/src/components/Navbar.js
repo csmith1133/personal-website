@@ -44,7 +44,7 @@ const Navbar = () => {
       <div className="modern-container">
         <div className="flex items-center h-20 relative">
           {/* Left Navigation */}
-          <div className="flex-1 flex justify-end items-center space-x-8 pr-8">
+          <div className="hidden md:flex flex-1 justify-end items-center space-x-8 pr-8">
             {leftNavItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -64,16 +64,19 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Centered Logo */}
-          <div className="flex-shrink-0 px-8 relative z-30">
-            <Link to="/" className="logo-brush block logo-large">
-              <span className="logo-charlie">Charlie</span>
-              <span className="logo-smith">Smith</span>
+          {/* Centered Logo - Desktop Only */}
+          <div className="hidden md:block flex-shrink-0 px-8 relative z-30">
+            <Link to="/" className="block">
+              <img 
+                src="/images/logos/script_name.png" 
+                alt="Charlie Smith" 
+                className="h-28 w-auto object-contain"
+              />
             </Link>
           </div>
 
           {/* Right Navigation */}
-          <div className="flex-1 flex justify-start items-center space-x-8 pl-8">
+          <div className="hidden md:flex flex-1 justify-start items-center space-x-8 pl-8">
             {rightNavItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -96,9 +99,12 @@ const Navbar = () => {
           {/* Mobile Menu Button & Logo for Mobile */}
           <div className="md:hidden flex items-center justify-between w-full">
             {/* Mobile Logo */}
-            <Link to="/" className="logo-brush block">
-              <span className="logo-charlie">Charlie</span>
-              <span className="logo-smith">Smith</span>
+            <Link to="/" className="block">
+              <img 
+                src="/images/logos/initials.png" 
+                alt="CS" 
+                className="h-16 w-auto object-contain"
+              />
             </Link>
             
             {/* Menu Button */}
@@ -106,7 +112,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-3 rounded-xl bg-neutral-100 text-neutral-700 hover:bg-neutral-200 transition-all duration-300"
+              className="p-3 text-noir-700 hover:bg-ivory-200/30 transition-all duration-300"
             >
               <AnimatePresence mode="wait">
                 {isMobileMenuOpen ? (

@@ -10,7 +10,7 @@ const Work = () => {
       technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'AWS'],
       image: '/api/placeholder/600/400',
       liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/charlessmith/ecommerce',
+      githubUrl: 'https://github.com/csmith1133/ecommerce',
       featured: true
     },
     {
@@ -20,7 +20,7 @@ const Work = () => {
       technologies: ['Python', 'Apache Airflow', 'React', 'D3.js', 'Docker'],
       image: '/api/placeholder/600/400',
       liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/charlessmith/data-dashboard',
+      githubUrl: 'https://github.com/csmith1133/data-dashboard',
       featured: true
     },
     {
@@ -30,7 +30,7 @@ const Work = () => {
       technologies: ['Python', 'FastAPI', 'React', 'TensorFlow', 'Snowflake'],
       image: '/api/placeholder/600/400',
       liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/charlessmith/fintech-tool',
+      githubUrl: 'https://github.com/csmith1133/fintech-tool',
       featured: false
     },
     {
@@ -40,7 +40,7 @@ const Work = () => {
       technologies: ['React Native', 'Firebase', 'Node.js', 'Socket.io'],
       image: '/api/placeholder/600/400',
       liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/charlessmith/task-manager',
+      githubUrl: 'https://github.com/csmith1133/task-manager',
       featured: false
     }
   ];

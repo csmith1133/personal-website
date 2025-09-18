@@ -86,32 +86,18 @@ const LoadingScreen = () => {
 
       {/* Main Content */}
       <div className="text-center relative z-10 px-6">
-        {/* Name */}
+        {/* Logo */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-16"
+          className="mb-16 flex justify-center"
         >
-          <div className="logo-brush block text-center">
-            <span className="block" style={{ 
-              fontSize: '5rem', 
-              fontWeight: 700, 
-              color: '#1B1B1B',
-              lineHeight: 0.75 
-            }}>
-              Charlie
-            </span>
-            <span className="block ml-2" style={{ 
-              fontSize: '4.5rem', 
-              fontWeight: 600, 
-              color: '#1B1B1B',
-              marginTop: '-0.5rem',
-              opacity: 0.9 
-            }}>
-              Smith
-            </span>
-          </div>
+          <img 
+            src="/images/logos/script_name.png" 
+            alt="Charlie Smith" 
+            className="h-96 w-auto object-contain"
+          />
         </motion.div>
 
         {/* Elegant Progress Bar */}
