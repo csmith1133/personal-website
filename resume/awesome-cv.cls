@@ -74,7 +74,7 @@
 \RequirePackage{unicode-math}
 % Needed to use icons from font-awesome
 % (https://github.com/posquit0/latex-fontawesome)
-% \RequirePackage{fontawesome} % Commented out to use local FontAwesome font
+\RequirePackage{fontawesome}
 \RequirePackage[default,opentype]{sourcesanspro}
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
@@ -161,22 +161,7 @@
 %                Configuration for fonts
 %-------------------------------------------------------------------------------
 % Set the FontAwesome font to be up-to-date.
-\newfontfamily\FA[Path=\@fontdir]{FontAwesome}
-
-% Define FontAwesome icon commands (simplified versions)
-\newcommand{\faMobile}{{\FA \symbol{"F10B}}}
-\newcommand{\faEnvelope}{{\FA \symbol{"F0E0}}}
-\newcommand{\faHome}{{\FA \symbol{"F015}}}
-\newcommand{\faGithubSquare}{{\FA \symbol{"F092}}}
-\newcommand{\faGitlab}{{\FA \symbol{"F296}}}
-\newcommand{\faStackOverflow}{{\FA \symbol{"F16C}}}
-\newcommand{\faLinkedinSquare}{{\FA \symbol{"F08C}}}
-\newcommand{\faTwitter}{{\FA \symbol{"F099}}}
-\newcommand{\faSkype}{{\FA \symbol{"F17E}}}
-\newcommand{\faReddit}{{\FA \symbol{"F1A1}}}
-\newcommand{\faXingSquare}{{\FA \symbol{"F169}}}
-\newcommand{\faMedium}{{\FA \symbol{"F23A}}}
-\newcommand{\faGraduationCap}{{\FA \symbol{"F19D}}}
+% \newfontfamily\FA[Path=\@fontdir]{FontAwesome}
 % Set font for header (default is Roboto)
 \newfontfamily\headerfont[
   Path=\@fontdir,
@@ -621,6 +606,7 @@
       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   \end{tabular*}%
+  \vspace{0.4cm}%
 }
 
 % Define an environment for cvsubentry
