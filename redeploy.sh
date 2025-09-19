@@ -16,12 +16,15 @@ SCRIPT_DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 COMPOSE_FILE="$(realpath "$SCRIPT_DIR/../Docker/docker_compose_projects.yaml")"
 REPO_DIR="$(realpath "$SCRIPT_DIR/../charlie-personal-website")"     # app repo root
 
-# print all the paths
 log "SCRIPT_DIR: $SCRIPT_DIR"
 log "COMPOSE_FILE: $COMPOSE_FILE"
 log "REPO_DIR: $REPO_DIR"
 
-# Ensure git safe.directory is configured for this repo (needed when running as root via cron)
+# >>> use Jason's SSH key + known_hosts for all git commands, even when run as root
+export GIT_SSH_COMMAND="ssh -i /home/jason/.ssh/id_rsa -o IdentitiesOnly=yes -o UserKnownHostsFile=/home/jason/.ssh/known_hosts -o StrictHostKeyChecking=yes"
+# <<<
+
+# safe.directory (needed when running as root)
 if ! git config --global --get-all safe.directory | grep -q "^$REPO_DIR$"; then
     log "Adding $REPO_DIR to git safe.directory configuration"
     git config --global --add safe.directory "$REPO_DIR"
