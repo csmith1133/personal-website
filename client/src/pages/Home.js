@@ -27,7 +27,7 @@ const Home = () => {
     },
     {
       name: 'Email',
-      url: 'mailto:charles@example.com',
+      url: 'mailto:charlessmith2@me.com',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -92,13 +92,19 @@ const Home = () => {
             <div className="mb-8 overflow-hidden">
               <TypeAnimation
                 sequence={[
-                  'Full Stack Developer',
+                  'Business Intelligence Leader',
                   2000,
-                  'Data Engineer',
+                  'Project Manager',
                   2000,
-                  'Problem Solver',
+                  'SQL Expert & Python Developer',
                   2000,
-                  'Tech Enthusiast',
+                  'Tableau & Power BI Specialist',
+                  2000,
+                  'ETL & Analytics Professional',
+                  2000,
+                  'AI-Driven Analytics Specialist',
+                  2000,
+                  'PMP Certified Professional',
                   2000,
                 ]}
                 wrapper="h2"
@@ -110,8 +116,8 @@ const Home = () => {
 
             {/* Description */}
             <p className="text-lg md:text-xl text-noir-600 leading-relaxed mb-8 max-w-2xl">
-              Passionate about building scalable solutions and turning data into actionable insights. 
-              I create robust applications that solve real-world problems and drive business growth.
+              Combining strategic leadership with deep technical expertise to drive business transformation. 
+              I specialize in SQL and advanced BI tools like Tableau and Power BI, with growing Python skills and AI integration to build scalable analytics solutions that empower data-driven decision making across organizations.
             </p>
 
             {/* CTA Buttons */}

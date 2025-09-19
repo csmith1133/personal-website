@@ -4,28 +4,32 @@ import React from 'react';
 const About = () => {
   const skills = [
     {
-      category: 'Frontend',
-      technologies: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Framer Motion']
+      category: 'Data Analysis & BI',
+      technologies: ['Tableau', 'Streamlit', 'ETL Pipelines', 'Data Automation', 'Financial Modeling', 'AI Integration']
     },
     {
-      category: 'Backend',
-      technologies: ['Node.js', 'Python', 'Express', 'FastAPI', 'PostgreSQL']
+      category: 'Finance & Process Optimization',
+      technologies: ['Cost Analysis', 'Budgeting & Forecasting', 'Business Strategy', 'Financial Reporting']
     },
     {
-      category: 'Data & Cloud',
-      technologies: ['Apache Airflow', 'Snowflake', 'AWS', 'Docker', 'Kubernetes']
+      category: 'Project & Operations Management',
+      technologies: ['Project Management (PMP)', 'Six Sigma (CSSGB)', 'Logistics', 'Inventory Control']
     },
     {
-      category: 'Tools & Practices',
-      technologies: ['Git', 'CI/CD', 'Testing', 'Agile', 'System Design']
+      category: 'Programming & Scripting',
+      technologies: ['SQL', 'Python', 'JavaScript', 'HTML', 'CSS']
+    },
+    {
+      category: 'Tools & Collaboration',
+      technologies: ['Git', 'Jira', 'MS Office', 'Google Drive', 'Power BI', 'Snowflake']
     }
   ];
 
   const stats = [
-    { number: '50+', label: 'Projects Completed' },
+    { number: '50+', label: 'Projects Delivered' },
     { number: '5+', label: 'Years Experience' },
-    { number: '99%', label: 'Client Satisfaction' },
-    { number: '24/7', label: 'Support Available' }
+    { number: '98%', label: 'On-Time Delivery' },
+    { number: '$2M+', label: 'Cost Savings Achieved' }
   ];
 
   return (
@@ -44,13 +48,13 @@ const About = () => {
                 About <span className="gradient-text">Me</span>
               </h1>
               <p className="text-lg md:text-xl text-noir-600 mb-6 leading-relaxed">
-                I'm a passionate Full Stack Developer and Data Engineer with over 5 years of experience 
-                building scalable applications and data infrastructure. I love turning complex problems 
-                into elegant solutions that drive business growth.
+                I'm a dedicated Project Manager and Business Intelligence Leader with over 5 years of experience 
+                combining strategic leadership with deep technical expertise. I specialize in SQL, advanced BI tools, with growing Python skills and AI integration 
+                to transform complex business challenges into scalable analytics solutions that deliver measurable results.
               </p>
               <p className="text-lg text-noir-600 mb-8 leading-relaxed">
-                When I'm not coding, you'll find me exploring new technologies, contributing to open source 
-                projects, or sharing knowledge through technical writing and mentoring.
+                When I'm not managing cross-functional teams, you'll find me crafting complex SQL queries, designing interactive Tableau dashboards, 
+                building ETL pipelines, or developing intelligent reporting systems that empower executives with real-time insights for strategic decision making.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button className="btn-primary">
@@ -119,11 +123,11 @@ const About = () => {
               Skills & <span className="gradient-text">Technologies</span>
             </h2>
             <p className="text-lg md:text-xl text-noir-600 font-medium max-w-2xl mx-auto">
-              A comprehensive toolkit for building modern, scalable applications
+              Strategic expertise and methodologies for driving organizational success
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {skills.map((skillGroup, index) => (
               <motion.div
                 key={skillGroup.category}
@@ -132,14 +136,14 @@ const About = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="card p-6"
               >
-                <h3 className="text-xl font-bold text-noir-900 mb-4">
+                <h3 className="text-lg font-bold text-noir-900 mb-3">
                   {skillGroup.category}
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {skillGroup.technologies.map((tech, techIndex) => (
                     <li key={techIndex} className="flex items-center">
-                      <div className="w-2 h-2 bg-moss-500 rounded-full mr-3"></div>
-                      <span className="text-noir-600">{tech}</span>
+                      <div className="w-1.5 h-1.5 bg-moss-500 rounded-full mr-2 flex-shrink-0"></div>
+                      <span className="text-noir-600 text-sm leading-tight">{tech}</span>
                     </li>
                   ))}
                 </ul>
@@ -169,19 +173,31 @@ const About = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: '🚀',
-                title: 'Innovation',
-                description: 'Always looking for better ways to solve problems and create value through technology.'
+                icon: (
+                  <svg className="w-12 h-12 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                ),
+                title: 'Strategic Focus',
+                description: 'Delivering measurable business outcomes through data-driven decision making and strategic planning.'
               },
               {
-                icon: '🤝',
-                title: 'Collaboration',
-                description: 'Believing that the best solutions come from diverse perspectives and teamwork.'
+                icon: (
+                  <svg className="w-12 h-12 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                ),
+                title: 'Team Leadership',
+                description: 'Empowering cross-functional teams to achieve excellence through clear communication and collaboration.'
               },
               {
-                icon: '📈',
-                title: 'Growth',
-                description: 'Committed to continuous learning and helping others develop their skills.'
+                icon: (
+                  <svg className="w-12 h-12 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                ),
+                title: 'Business Intelligence',
+                description: 'Transforming complex data into actionable insights that drive organizational growth and efficiency.'
               }
             ].map((value, index) => (
               <motion.div
@@ -191,7 +207,7 @@ const About = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="card p-8 text-center"
               >
-                <div className="text-4xl mb-4">{value.icon}</div>
+                <div className="flex justify-center mb-4">{value.icon}</div>
                 <h3 className="text-xl font-bold text-noir-900 mb-3">
                   {value.title}
                 </h3>

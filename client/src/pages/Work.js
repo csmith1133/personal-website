@@ -281,15 +281,37 @@ const Work = () => {
   const getTypeIcon = (type) => {
     switch (type) {
       case 'work':
-        return '💼';
+        return (
+          <svg className="w-7 h-7 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        );
       case 'education':
-        return '🎓';
+        return (
+          <svg className="w-7 h-7 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+          </svg>
+        );
       case 'achievement':
-        return '🏆';
+        return (
+          <svg className="w-7 h-7 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+          </svg>
+        );
       case 'certification':
-        return '📜';
+        return (
+          <svg className="w-7 h-7 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        );
       default:
-        return '📅';
+        return (
+          <svg className="w-7 h-7 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3a4 4 0 118 0v4m-8 0h8m-8 0H3a2 2 0 00-2 2v6a2 2 0 002 2h4m4-6v6m0-6V9a2 2 0 012-2h2a2 2 0 012 2v6a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        );
     }
   };
 
@@ -443,13 +465,13 @@ const Work = () => {
                   {project.technologies.slice(0, 3).map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-2 py-1 bg-neutral-100 text-noir-600 text-xs font-medium rounded"
+                      className="px-2 py-1 bg-ivory-200/60 text-noir-600 text-xs font-medium rounded"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 3 && (
-                    <span className="px-2 py-1 bg-neutral-100 text-noir-600 text-xs font-medium rounded">
+                    <span className="px-2 py-1 bg-ivory-200/60 text-noir-600 text-xs font-medium rounded">
                       +{project.technologies.length - 3} more
                     </span>
                   )}
@@ -525,7 +547,7 @@ const Work = () => {
                     }}
                   >
                     <div className="flex items-center mb-4">
-                      <span className="text-2xl mr-3">{getTypeIcon(item.type)}</span>
+                      <div className="mr-3">{getTypeIcon(item.type)}</div>
                       <span className="text-moss-600 font-bold text-base">{item.year}</span>
                     </div>
                     <div className="flex items-center mb-2">

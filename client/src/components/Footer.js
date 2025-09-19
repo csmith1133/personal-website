@@ -1,16 +1,7 @@
-import { motion } from 'framer-motion';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const quickLinks = [
-    { name: 'About', path: '/about' },
-    { name: 'Work', path: '/work' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact', path: '/contact' }
-  ];
 
   const socialLinks = [
     {
@@ -33,7 +24,7 @@ const Footer = () => {
     },
     {
       name: 'Email',
-      url: 'mailto:charles@example.com',
+      url: 'mailto:charlessmith2@me.com',
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -43,53 +34,30 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-neutral-900 text-white">
-      <div className="modern-container py-10">
-        {/* Centered Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          {/* Quick Links */}
-          <div className="flex justify-center space-x-6 mb-4">
-            {quickLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className="text-neutral-300 hover:text-white transition-colors duration-300 text-sm"
-              >
-                {link.name}
-              </Link>
-            ))}
+    <footer className="bg-noir-900 border-t border-ivory-200/20">
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="flex justify-between items-center">
+          {/* Copyright - Left Side */}
+          <div className="text-ivory-200/60 text-sm">
+            © {currentYear} Charles Smith
           </div>
-
-          {/* Social Links */}
-          <div className="flex justify-center space-x-4 mb-4">
+          
+          {/* Social Links - Right Side */}
+          <div className="flex space-x-3">
             {socialLinks.map((link) => (
-              <motion.a
+              <a
                 key={link.name}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="p-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition-all duration-300"
+                className="text-ivory-200 hover:text-ivory-50 transition-colors duration-200"
                 aria-label={link.name}
               >
                 {link.icon}
-              </motion.a>
+              </a>
             ))}
           </div>
-
-          {/* Copyright */}
-          <div className="border-t border-neutral-800 pt-2">
-            <p className="text-sm text-neutral-400">
-              © {currentYear} Charles Smith. All rights reserved.
-            </p>
-          </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

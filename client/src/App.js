@@ -15,8 +15,6 @@ import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Work from './pages/Work';
 
-// Context
-import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -35,8 +33,7 @@ function App() {
   }
 
   return (
-    <ThemeProvider>
-      <Router>
+    <Router>
         <ScrollToTop />
         <Layout>
           <Routes>
@@ -62,7 +59,6 @@ function App() {
           />
         </Layout>
       </Router>
-    </ThemeProvider>
   );
 }
 

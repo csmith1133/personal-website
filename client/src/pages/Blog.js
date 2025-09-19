@@ -48,7 +48,7 @@ const Blog = () => {
   });
 
   return (
-    <div className="min-h-screen bg-cream-50">
+    <div className="min-h-screen bg-ivory-300">
       {/* Hero Section */}
       <section className="pt-20 pb-12 modern-gradient">
         <div className="modern-container">
@@ -93,7 +93,7 @@ const Blog = () => {
       </section>
 
       {/* Search and Filter Section */}
-      <section className="py-12 bg-cream-100/30">
+      <section className="py-12 bg-ivory-200/30">
         <div className="modern-container">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             {/* Search */}
@@ -134,7 +134,7 @@ const Blog = () => {
                   className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
                     selectedCategory === category
                       ? 'bg-noir-900 text-white'
-                      : 'bg-cream-200/80 text-noir-600 hover:bg-cream-300/80'
+                      : 'bg-ivory-200/80 text-noir-600 hover:bg-ivory-300/80'
                   }`}
                 >
                   {category}
@@ -231,7 +231,7 @@ const Blog = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-cream-100/90 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-accent-500"
+                className="flex-1 px-4 py-3 bg-ivory-100/90 rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-accent-500"
               />
               <button className="px-6 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105">
                 Subscribe

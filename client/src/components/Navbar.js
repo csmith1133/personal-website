@@ -1,11 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // const { darkMode, toggleTheme } = useTheme(); // Temporarily disabled for modern design
   const location = useLocation();
 
   const leftNavItems = [
@@ -18,14 +16,6 @@ const Navbar = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handleMobileNavClick = () => {
     setIsMobileMenuOpen(false);
@@ -37,9 +27,6 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       className="fixed top-0 left-0 right-0 z-50 bg-ivory-300"
-      style={{
-        backgroundColor: '#E4E4DE'
-      }}
     >
       <div className="modern-container">
         <div className="flex items-center h-20 relative">
@@ -181,6 +168,7 @@ const Navbar = () => {
                   </Link>
                 </motion.div>
               ))}
+              
             </div>
           </motion.div>
         )}
