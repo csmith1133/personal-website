@@ -242,6 +242,79 @@ app.use((err, req, res, next) => {
   });
 });
 
+// Resume data endpoints
+app.get('/api/resume-experience', async (req, res) => {
+  try {
+    const experiencePath = path.join(__dirname, '../resume/resume/experience.tex');
+    const experienceText = fs.readFileSync(experiencePath, 'utf8');
+    
+    res.json({
+      success: true,
+      data: experienceText
+    });
+  } catch (error) {
+    console.error('Error reading experience file:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to read experience data'
+    });
+  }
+});
+
+app.get('/api/resume-skills', async (req, res) => {
+  try {
+    const skillsPath = path.join(__dirname, '../resume/resume/skills.tex');
+    const skillsText = fs.readFileSync(skillsPath, 'utf8');
+    
+    res.json({
+      success: true,
+      data: skillsText
+    });
+  } catch (error) {
+    console.error('Error reading skills file:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to read skills data'
+    });
+  }
+});
+
+app.get('/api/resume-certificates', async (req, res) => {
+  try {
+    const certificatesPath = path.join(__dirname, '../resume/resume/certificates.tex');
+    const certificatesText = fs.readFileSync(certificatesPath, 'utf8');
+    
+    res.json({
+      success: true,
+      data: certificatesText
+    });
+  } catch (error) {
+    console.error('Error reading certificates file:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to read certificates data'
+    });
+  }
+});
+
+app.get('/api/resume-education', async (req, res) => {
+  try {
+    const educationPath = path.join(__dirname, '../resume/resume/education.tex');
+    const educationText = fs.readFileSync(educationPath, 'utf8');
+    
+    res.json({
+      success: true,
+      data: educationText
+    });
+  } catch (error) {
+    console.error('Error reading education file:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to read education data'
+    });
+  }
+});
+
 // 404 handler
 app.use('*', (req, res) => {
   res.status(404).json({ 

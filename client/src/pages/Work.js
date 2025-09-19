@@ -1,7 +1,65 @@
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { createTimelineFromResume, parseCertificates, parseEducation, parseExperience } from '../utils/resumeParser';
 
 const Work = () => {
+  const [timeline, setTimeline] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Load resume data on component mount
+  useEffect(() => {
+    const loadResumeData = async () => {
+      try {
+        // Fetch all resume data in parallel
+        const [experienceResponse, certificatesResponse, educationResponse] = await Promise.all([
+          fetch('/api/resume-experience'),
+          fetch('/api/resume-certificates'),
+          fetch('/api/resume-education')
+        ]);
+        
+        let experienceEntries = [];
+        let certificates = [];
+        let education = [];
+        
+        // Parse experience data
+        if (experienceResponse.ok) {
+          const experienceResult = await experienceResponse.json();
+          if (experienceResult.success) {
+            experienceEntries = parseExperience(experienceResult.data);
+          }
+        }
+        
+        // Parse certificates data
+        if (certificatesResponse.ok) {
+          const certificatesResult = await certificatesResponse.json();
+          if (certificatesResult.success) {
+            certificates = parseCertificates(certificatesResult.data);
+          }
+        }
+        
+        // Parse education data
+        if (educationResponse.ok) {
+          const educationResult = await educationResponse.json();
+          if (educationResult.success) {
+            education = parseEducation(educationResult.data);
+          }
+        }
+        
+        // Create timeline from all parsed data
+        const resumeTimeline = createTimelineFromResume(experienceEntries, certificates, education);
+        setTimeline(resumeTimeline);
+        
+      } catch (error) {
+        console.error('Error loading resume data:', error);
+        // Fallback to empty timeline
+        setTimeline([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadResumeData();
+  }, []);
   const projects = [
     {
       id: 1,
@@ -71,180 +129,8 @@ const Work = () => {
     return '/images/logos/certifications.svg';
   };
 
-  const timeline = [
-    {
-      year: '2021 - Present',
-      company: 'HelloFresh',
-      description: 'Progressive advancement from materials planning to leading business intelligence strategies for financial optimization.',
-      type: 'work',
-      roles: [
-        {
-          title: 'Manager, Business Intelligence (Finance)',
-          period: 'Jan 2024 - Present',
-          achievements: [
-            'Developed ETL pipelines leveraging Python, SQL, Tableau, and Streamlit',
-            'Created interactive dashboards integrating Amazon S3 for scalable data storage',
-            'Automated financial reporting improving efficiency across departments',
-            'Led data analysis and strategic initiatives delivering actionable insights'
-          ]
-        },
-        {
-          title: 'Senior Data Analyst (Finance)',
-          period: 'April 2023 - January 2024',
-          achievements: [
-            'Utilized Python and SQL for strategic financial decision-making',
-            'Developed complex financial models for forecasting and budgeting',
-            'Created interactive Tableau dashboards for senior management'
-          ]
-        },
-        {
-          title: 'Senior Planner',
-          period: 'April 2022 – April 2023',
-          achievements: [
-            'Led labor planning for 2000+ employees across multiple sites',
-            'Implemented tool enhancements using Python, Google App Script, and SQL',
-            'Managed short-term and long-term production forecasting'
-          ]
-        },
-        {
-          title: 'Planning & Materials Associate',
-          period: 'May 2021 - April 2022',
-          achievements: [
-            'Developed shift plans aligned with production goals and SLAs',
-            'Collaborated across HR, Operations, Logistics, and Procurement',
-            'Maintained planning tools ensuring data accuracy in high-volume environment'
-          ]
-        }
-      ]
-    },
-    {
-      year: '2023',
-      company: 'Professional Certifications',
-      description: 'Achieved key professional certifications in project management and data analytics.',
-      type: 'certification',
-      roles: [
-        {
-          title: 'Project Management Professional (PMP)',
-          period: 'Sep 2023',
-          achievements: [
-            'Project Management Institute - Credential ID: 3647825'
-          ]
-        },
-        {
-          title: 'Tableau Certified Data Analyst',
-          period: 'Jul 2023',
-          achievements: [
-            'Tableau Certification for advanced data visualization and analytics'
-          ]
-        }
-      ]
-    },
-    {
-      year: '2022',
-      company: 'Professional Certification',
-      description: 'Advanced quality management certification.',
-      type: 'certification',
-      roles: [
-        {
-          title: 'ASQ Certified Six Sigma Green Belt',
-          period: 'Aug 2022',
-          achievements: [
-            'American Society for Quality (ASQ) - Credential ID: 57961222'
-          ]
-        }
-      ]
-    },
-    {
-      year: '2015 - 2021',
-      company: 'Stonecrop Technologies',
-      description: 'Led strategic programs and inventory management across telecommunications industry.',
-      type: 'work',
-      roles: [
-        {
-          title: 'Project Manager',
-          period: 'Feb 2019 - Feb 2021',
-          achievements: [
-            'Managed 500 orders/month in Nokia small cell program',
-            'Achieved 99.8% inventory accuracy across facilities',
-            'Oversaw disposition of $2.5M in assets with full compliance'
-          ]
-        },
-        {
-          title: 'Inventory Control Manager',
-          period: 'Aug 2018 - Feb 2019',
-          achievements: [
-            'Optimized processes for inventory up to $900M in total value',
-            'Developed reporting tools using Excel, Access, and Tableau',
-            'Provided root cause analysis reducing inventory discrepancies'
-          ]
-        },
-        {
-          title: 'Reverse Logistics Supervisor',
-          period: 'Nov 2016 - Aug 2018',
-          achievements: [
-            'Generated $2.5M in additional revenue through returns management',
-            'Led Massive MIMO CDU30 Refurbishment projects',
-            'Built vendor relationships streamlining material scrapping processes'
-          ]
-        },
-        {
-          title: 'Material Follow-Up Coordinator',
-          period: 'Oct 2015 - Nov 2016',
-          achievements: [
-            'Monitored $300M worth of materials ensuring SLA compliance',
-            'Led Highjump WMS implementation in distribution center',
-            'Optimized material handling improving operational efficiency'
-          ]
-        }
-      ]
-    },
-    {
-      year: '2015 - 2017',
-      company: 'University of North Texas',
-      description: 'Advanced graduate studies in Recreation, Event, and Sport Management.',
-      type: 'education',
-      roles: [
-        {
-          title: 'M.Sc. in Recreation, Event, and Sport Management',
-          period: '2015 - 2017',
-          achievements: [
-            'Denton, Texas'
-          ]
-        }
-      ]
-    },
-    {
-      year: '2010 - 2014',
-      company: 'University of North Texas',
-      description: 'Bachelor\'s degree foundation in Recreation, Event, and Sport Management.',
-      type: 'education',
-      roles: [
-        {
-          title: 'B.Sc. in Recreation, Event, and Sport Management',
-          period: '2010 - 2014',
-          achievements: [
-            'Denton, Texas'
-          ]
-        }
-      ]
-    },
-    {
-      year: '2007 - 2010',
-      company: 'University of Northern Colorado',
-      description: 'Foundational education in teaching and pedagogy, developing leadership skills through competitive athletics at the Division 1 level.',
-      type: 'education',
-      roles: [
-        {
-          title: 'Physical Education K-12',
-          period: '2007 - 2010',
-          achievements: [
-            'NCAA Division 1 Track & Field Team - Throws Specialist',
-            'Greeley, Colorado'
-          ]
-        }
-      ]
-    }
-  ];
+  // Timeline is now loaded dynamically from resume data in useEffect above
+
 
   const handleResumeDownload = async () => {
     try {
@@ -522,7 +408,16 @@ const Work = () => {
               {/* Timeline line */}
               <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-moss-200 transform md:-translate-x-0.5"></div>
 
-              {timeline.map((item, index) => (
+              {loading ? (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex justify-center py-12"
+                >
+                  <div className="text-lg text-noir-600">Loading work experience from resume...</div>
+                </motion.div>
+              ) : (
+                timeline.map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
@@ -620,7 +515,8 @@ const Work = () => {
                     )}
                   </div>
                 </motion.div>
-              ))}
+              ))
+              )}
             </div>
           </div>
         </div>

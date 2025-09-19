@@ -1,8 +1,37 @@
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { parseSkills } from '../utils/resumeParser';
 
 const About = () => {
-  const skills = [
+  const [skills, setSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Load skills from resume
+  useEffect(() => {
+    const loadSkills = async () => {
+      try {
+        const response = await fetch('/api/resume-skills');
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            const parsedSkills = parseSkills(result.data);
+            setSkills(parsedSkills);
+          }
+        }
+      } catch (error) {
+        console.error('Error loading skills from resume:', error);
+        // Fallback to empty array
+        setSkills([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadSkills();
+  }, []);
+
+  // Keep original skills as fallback (can be removed later)
+  const fallbackSkills = [
     {
       category: 'Data Analysis & BI',
       technologies: ['Tableau', 'Power BI', 'Snowflake', 'ETL Pipelines', 'Data Automation', 'Financial Modeling', 'AI Integration']
