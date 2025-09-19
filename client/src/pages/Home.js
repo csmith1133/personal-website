@@ -38,7 +38,7 @@ const Home = () => {
   ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-ivory-300">
+    <section className="min-h-screen pt-12 relative overflow-hidden bg-ivory-300">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 z-0">
         <motion.div
@@ -72,7 +72,7 @@ const Home = () => {
 
       {/* Main Content */}
       <div className="relative z-10 modern-container">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -83,7 +83,7 @@ const Home = () => {
             {/* Name */}
             <div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-noir-900 mb-4">
-                Charles{' '}
+                Charlie{' '}
                 <span className="gradient-text">Smith</span>
               </h1>
             </div>

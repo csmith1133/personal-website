@@ -5,7 +5,7 @@ const About = () => {
   const skills = [
     {
       category: 'Data Analysis & BI',
-      technologies: ['Tableau', 'Streamlit', 'ETL Pipelines', 'Data Automation', 'Financial Modeling', 'AI Integration']
+      technologies: ['Tableau', 'Power BI', 'Snowflake', 'ETL Pipelines', 'Data Automation', 'Financial Modeling', 'AI Integration']
     },
     {
       category: 'Finance & Process Optimization',
@@ -17,25 +17,25 @@ const About = () => {
     },
     {
       category: 'Programming & Scripting',
-      technologies: ['SQL', 'Python', 'JavaScript', 'HTML', 'CSS']
+      technologies: ['SQL', 'Python', 'JavaScript', 'HTML', 'CSS', 'Git']
     },
     {
       category: 'Tools & Collaboration',
-      technologies: ['Git', 'Jira', 'MS Office', 'Google Drive', 'Power BI', 'Snowflake']
+      technologies: ['Jira', 'MS Office', 'Google Drive', 'Streamlit', 'Monday.com', 'Slack']
     }
   ];
 
   const stats = [
-    { number: '50+', label: 'Projects Delivered' },
+    { number: '25+', label: 'Projects Delivered' },
     { number: '5+', label: 'Years Experience' },
-    { number: '98%', label: 'On-Time Delivery' },
-    { number: '$2M+', label: 'Cost Savings Achieved' }
+    { number: '95%', label: 'On-Time Delivery' },
+    { number: '$500K+', label: 'Cost Savings Achieved' }
   ];
 
   return (
     <div className="min-h-screen bg-ivory-300">
       {/* Hero Section */}
-      <section className="pt-20 pb-16 modern-gradient">
+      <section className="pb-16 modern-gradient">
         <div className="modern-container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
@@ -87,7 +87,7 @@ const About = () => {
       
 
       {/* Stats Section */}
-      <section className="py-16 bg-ivory-200/30">
+      <section className="py-10 bg-ivory-200/30">
         <div className="modern-container">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -111,13 +111,13 @@ const About = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="py-16">
+      <section className="py-10">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="text-center mb-10"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-noir-900 mb-2">
               Skills & <span className="gradient-text">Technologies</span>
@@ -154,13 +154,13 @@ const About = () => {
       </section>
 
       {/* Personal Values Section */}
-      <section className="py-16 bg-ivory-200/30">
+      <section className="py-10 bg-ivory-200/30">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="text-center mb-10"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-noir-900 mb-2">
               Core <span className="gradient-text">Values</span>

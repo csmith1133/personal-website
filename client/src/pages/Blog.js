@@ -50,7 +50,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-ivory-300">
       {/* Hero Section */}
-      <section className="pt-20 pb-12 modern-gradient">
+      <section className="pt-12 pb-12 modern-gradient">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -69,7 +69,7 @@ const Blog = () => {
       </section>
 
       {/* Under Construction Notice */}
-      <section className="py-16">
+      <section className="py-10">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -146,7 +146,7 @@ const Blog = () => {
       </section>
 
       {/* Blog Posts Preview */}
-      <section className="py-16">
+      <section className="py-10">
         <div className="modern-container">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post, index) => (
@@ -213,7 +213,7 @@ const Blog = () => {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-16 bg-noir-900">
+      <section className="py-10 bg-noir-900">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -231,14 +231,14 @@ const Work = () => {
     {
       year: '2007 - 2010',
       company: 'University of Northern Colorado',
-      description: 'Early education focus with NCAA Division 1 athletics.',
+      description: 'Foundational education in teaching and pedagogy, developing leadership skills through competitive athletics at the Division 1 level.',
       type: 'education',
       roles: [
         {
           title: 'Physical Education K-12',
           period: '2007 - 2010',
           achievements: [
-            'NCAA Division 1 Track & Field Team - Throws',
+            'NCAA Division 1 Track & Field Team - Throws Specialist',
             'Greeley, Colorado'
           ]
         }
@@ -318,7 +318,7 @@ const Work = () => {
   return (
     <div className="min-h-screen bg-ivory-300">
       {/* Hero Section */}
-      <section className="pt-20 pb-12 modern-gradient">
+      <section className="pb-12 modern-gradient">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -350,7 +350,7 @@ const Work = () => {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-16">
+      <section className="py-10">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -501,7 +501,7 @@ const Work = () => {
       </section>
 
       {/* Professional Timeline */}
-      <section className="py-16 bg-ivory-200/30">
+      <section className="py-10 bg-ivory-200/30">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -39,7 +39,7 @@ const Footer = () => {
         <div className="flex justify-between items-center">
           {/* Copyright - Left Side */}
           <div className="text-ivory-200/60 text-sm">
-            © {currentYear} Charles Smith
+            © {currentYear} Charlie Smith
           </div>
           
           {/* Social Links - Right Side */}
