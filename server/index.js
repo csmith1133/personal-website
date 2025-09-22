@@ -59,10 +59,10 @@ app.get('/api/health', (req, res) => {
 app.post('/api/contact', 
   contactLimiter,
   [
-    body('name').trim().isLength({ min: 2, max: 100 }).escape(),
+    body('name').trim().escape(),
     body('email').isEmail().normalizeEmail(),
-    body('subject').trim().isLength({ min: 5, max: 200 }).escape(),
-    body('message').trim().isLength({ min: 10, max: 1000 }).escape()
+    body('subject').trim().escape(),
+    body('message').trim().escape()
   ],
   async (req, res) => {
     try {
@@ -105,13 +105,10 @@ app.post('/api/contact',
               <!-- Header with Logo -->
               <div style="text-align: center; margin-bottom: 32px; padding: 24px;">
                 <div style="text-align: center;">
-                  <img src="data:image/png;base64,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" 
-                       alt="Charlie Smith" 
-                       style="height: 60px; width: auto; margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto;"
+                  <img src="https://iili.io/Ka8ILtS.md.png" 
+                       alt="Power BI Logo" 
+                       style="width: 300px; height: 200px; object-fit: cover; object-position: center; margin-bottom: 0px; display: block; margin-left: auto; margin-right: auto;"
                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-                  <div style="display: none; font-family: 'Dancing Script', 'Brush Script MT', cursive; font-size: 48px; font-weight: 700; color: #EB5E28; margin-bottom: 16px; text-align: center; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
-                    Charlie Smith
-                  </div>
                 </div>
                 <div style="height: 2px; width: 60px; background: linear-gradient(90deg, #EB5E28, #FF7043); margin: 0 auto; border-radius: 2px;"></div>
                 <p style="color: #403D39; font-size: 14px; margin: 16px 0 0 0; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">
@@ -186,16 +183,23 @@ app.post('/api/contact',
       };
 
       await transporter.sendMail(mailOptions);
-
+      
       res.json({ 
         success: true, 
         message: 'Message sent successfully!' 
       });
     } catch (error) {
-      console.error('Contact form error:', error);
+      console.error('🚨 EMAIL SENDING FAILED:', error);
+      console.error('📧 SMTP Error Details:', {
+        message: error.message,
+        code: error.code,
+        response: error.response,
+        stack: error.stack?.split('\n').slice(0, 3)
+      });
       res.status(500).json({ 
         success: false, 
-        message: 'Failed to send message. Please try again later.' 
+        message: 'Failed to send message. Please try again later.',
+        error: process.env.NODE_ENV === 'development' ? error.message : undefined
       });
     }
   }

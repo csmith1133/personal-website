@@ -49,7 +49,12 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.post('/api/contact', formData);
+      console.log('🚀 Frontend sending data:', formData);
+      console.log('🌐 Making request to:', '/api/contact');
+      
+      const response = await axios.post('/api/contact', formData);
+      console.log('✅ Frontend received response:', response.data);
+      
       toast.success('Message sent successfully! I\'ll get back to you soon.');
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
