@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
+import InfiniteScroll from '../components/InfiniteScroll';
 import { parseSkills } from '../utils/resumeParser';
 
 const About = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
+
 
   // Load skills from resume
   useEffect(() => {
@@ -82,8 +84,8 @@ const About = () => {
                 to transform complex business challenges into scalable analytics solutions that deliver measurable results.
               </p>
               <p className="text-lg text-noir-600 mb-8 leading-relaxed">
-                When I'm not managing cross-functional teams, you'll find me crafting complex SQL queries, designing interactive Tableau dashboards, 
-                building ETL pipelines, or developing intelligent reporting systems that empower executives with real-time insights for strategic decision making.
+                When I'm not leading strategic initiatives, you'll find me crafting complex SQL queries, designing interactive Tableau dashboards, 
+                architecting data solutions, and implementing intelligent reporting systems that empower executives with real-time insights for strategic decision making.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button className="btn-primary">
@@ -156,8 +158,17 @@ const About = () => {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {skills.map((skillGroup, index) => (
+          {loading ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex justify-center py-12"
+            >
+              <div className="text-lg text-noir-600">Loading skills from resume...</div>
+            </motion.div>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+              {(skills.length > 0 ? skills : fallbackSkills).map((skillGroup, index) => (
               <motion.div
                 key={skillGroup.category}
                 initial={{ opacity: 0, y: 30 }}
@@ -177,10 +188,104 @@ const About = () => {
                   ))}
                 </ul>
               </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
+
+          {/* Tech Logo Ribbon - Kevin Powell Style */}
+          <section className="py-8 bg-ivory-100/50 overflow-hidden">
+            <div className="relative">
+              <InfiniteScroll />
+              <div className="scroller" data-speed="fast">
+                <ul className="scroller__inner">
+                {[
+                  { name: 'Tableau', logo: 'https://raw.githubusercontent.com/get-icon/geticon/master/icons/tableau-icon.svg', isSmall: true },
+                  { name: 'Power BI', logo: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg' },
+                  { name: 'Snowflake', logo: 'https://companieslogo.com/img/orig/SNOW-35164165.png', isLarge: true },
+                  { name: 'Databricks', logo: 'https://www.vectorlogo.zone/logos/databricks/databricks-icon.svg' },
+                  { name: 'SQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg' },
+                  { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+                  { name: 'JavaScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+                  { name: 'HTML', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+                  { name: 'CSS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+                  { name: 'Git', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+                  { name: 'Jira', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg' },
+                  { name: 'Microsoft', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg' },
+                  { name: 'Google', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg' },
+                  { name: 'Slack', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg' },
+                ].map((tech, index) => (
+                  <li key={index} className="scroller__item">
+                    <img 
+                      src={tech.logo} 
+                      alt={tech.name}
+                      className={`${
+                        tech.isLarge ? 'w-20 h-20' : tech.isSmall ? 'w-16 h-16' : 'w-20 h-20'
+                      } object-contain`}
+                      style={{
+                        filter: 'grayscale(100%) opacity(0.6)',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.filter = 'grayscale(0%) opacity(1)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.filter = 'grayscale(100%) opacity(0.6)';
+                      }}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                  </li>
+                ))}
+                
+                {/* Kevin Powell's JavaScript will duplicate these automatically */}
+                {[
+                  { name: 'Tableau', logo: 'https://raw.githubusercontent.com/get-icon/geticon/master/icons/tableau-icon.svg', isSmall: true },
+                  { name: 'Power BI', logo: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg' },
+                  { name: 'Snowflake', logo: 'https://companieslogo.com/img/orig/SNOW-35164165.png', isLarge: true },
+                  { name: 'Databricks', logo: 'https://www.vectorlogo.zone/logos/databricks/databricks-icon.svg' },
+                  { name: 'SQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg' },
+                  { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+                  { name: 'JavaScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+                  { name: 'HTML', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+                  { name: 'CSS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+                  { name: 'Git', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+                  { name: 'Jira', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg' },
+                  { name: 'Microsoft', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg' },
+                  { name: 'Google', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg' },
+                  { name: 'Slack', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg' },
+                ].map((tech, index) => (
+                  <li key={`dup-${index}`} className="scroller__item" aria-hidden="true">
+                    <img 
+                      src={tech.logo} 
+                      alt={tech.name}
+                      className={`${
+                        tech.isLarge ? 'w-20 h-20' : tech.isSmall ? 'w-16 h-16' : 'w-20 h-20'
+                      } object-contain`}
+                      style={{
+                        filter: 'grayscale(100%) opacity(0.6)',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.filter = 'grayscale(0%) opacity(1)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.filter = 'grayscale(100%) opacity(0.6)';
+                      }}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                  </li>
+                ))}
+                </ul>
+              </div>
+            
+              {/* Gradient fade edges */}
+              <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-ivory-100/50 to-transparent pointer-events-none z-10"></div>
+              <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-ivory-100/50 to-transparent pointer-events-none z-10"></div>
+            </div>
+          </section>
 
       {/* Personal Values Section */}
       <section className="py-10 bg-ivory-200/30">

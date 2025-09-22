@@ -1,6 +1,6 @@
-# Personal Portfolio Website 🚀
+# Business Intelligence & Project Management Portfolio 🚀
 
-A modern, responsive personal portfolio website built with React and Node.js, showcasing projects, skills, and experience with beautiful animations and interactive elements.
+A modern, responsive professional portfolio website built with React and Node.js, showcasing business intelligence projects, project management expertise, and data analytics capabilities with beautiful animations and interactive elements.
 
 ## ✨ Features
 
@@ -8,8 +8,8 @@ A modern, responsive personal portfolio website built with React and Node.js, sh
 - **Responsive**: Fully responsive design that works on all devices
 - **Interactive Animations**: Smooth animations using Framer Motion
 - **Contact Form**: Working contact form with backend integration
-- **Project Showcase**: Dynamic project gallery with filtering
-- **Skills Display**: Interactive skills section with proficiency levels
+- **BI Project Showcase**: Dynamic gallery showcasing data analytics and business intelligence projects
+- **Skills Display**: Interactive skills section highlighting technical and management competencies
 - **SEO Optimized**: Meta tags, structured data, and performance optimized
 - **Fast Loading**: Optimized images and code splitting
 
@@ -103,17 +103,17 @@ personal-website/
 ### Personal Information
 1. Update personal details in:
    - `client/src/components/Hero.js`
-   - `client/src/components/About.js`
+   - `client/src/pages/About.js`
    - `client/src/components/Contact.js`
    - `client/src/components/Footer.js`
 
-### Projects Data
-- Modify the projects array in `server/index.js` or connect to a database
-- Add your project images to `client/public/images/`
+### Business Intelligence Projects
+- Modify the projects to showcase BI dashboards, data analytics, and project management deliverables
+- Add project screenshots to `client/public/images/`
 
 ### Skills & Technologies
-- Update the skills object in `server/index.js`
-- Customize skill icons in `client/src/components/Skills.js`
+- Skills are now dynamically loaded from LaTeX resume files in `resume/resume/skills.tex`
+- Business intelligence and project management skills are automatically displayed
 
 ### Styling
 - Customize colors in `client/tailwind.config.js`
@@ -257,9 +257,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 If you have any questions or need help with setup, feel free to reach out:
 
-- Email: charles.smith@example.com
-- LinkedIn: [Charles Smith](https://linkedin.com/in/charles-smith)
-- GitHub: [@charles-smith](https://github.com/charles-smith)
+- Email: charlessmith2@me.com
+- LinkedIn: [Charles Smith](https://linkedin.com/in/csmithunt)
+- GitHub: [@csmith1133](https://github.com/csmith1133)
 
 ---
 

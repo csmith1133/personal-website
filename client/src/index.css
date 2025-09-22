@@ -229,18 +229,100 @@
     @apply w-full;
   }
   
-  /* Form Elements */
+  /* Form Elements - Ultra Aggressive Override */
   .modern-input {
-    @apply w-full px-4 py-3 bg-ivory-200/80 border border-sage-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-moss-500 focus:border-transparent text-noir-900;
-    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out, background-color 0.15s ease-out;
-    will-change: border-color, box-shadow;
+    width: 100% !important;
+    padding: 12px 16px !important;
+    background: rgba(228, 228, 222, 0.8) !important;
+    background-color: rgba(228, 228, 222, 0.8) !important;
+    border: 1px solid #CCC5B9 !important;
+    border-radius: 12px !important;
+    outline: none !important;
+    color: #252422 !important;
+    font-family: 'Inter', Arial, sans-serif !important;
+    font-size: 16px !important;
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
   }
   
+  .modern-input:focus {
+    background: rgba(228, 228, 222, 0.8) !important;
+    background-color: rgba(228, 228, 222, 0.8) !important;
+    border: 1px solid #595f39 !important;
+    border-color: #595f39 !important;
+    box-shadow: 0 0 0 2px rgba(89, 95, 57, 0.2) !important;
+    outline: none !important;
+    color: #252422 !important;
+  }
+  
+  .modern-input:hover {
+    background: rgba(228, 228, 222, 0.8) !important;
+    background-color: rgba(228, 228, 222, 0.8) !important;
+  }
+  
+  .modern-input:active {
+    background: rgba(228, 228, 222, 0.8) !important;
+    background-color: rgba(228, 228, 222, 0.8) !important;
+  }
+  
+  /* Nuclear option for autofill */
+  .modern-input:-webkit-autofill,
+  .modern-input:-webkit-autofill:hover,
+  .modern-input:-webkit-autofill:focus,
+  .modern-input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px rgba(228, 228, 222, 0.8) inset !important;
+    -webkit-text-fill-color: #252422 !important;
+    background: rgba(228, 228, 222, 0.8) !important;
+    background-color: rgba(228, 228, 222, 0.8) !important;
+    border: 1px solid #CCC5B9 !important;
+    border-radius: 12px !important;
+    outline: none !important;
+    color: #252422 !important;
+    -webkit-background-clip: text !important;
+    transition: -webkit-box-shadow 5000s ease-in-out 0s !important;
+  }
+  
+  .modern-input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px rgba(228, 228, 222, 0.8) inset, 0 0 0 2px rgba(89, 95, 57, 0.2) !important;
+    border: 1px solid #595f39 !important;
+    border-color: #595f39 !important;
+  }
+  
+  /* Firefox autofill override */
+  .modern-input:-moz-autofill {
+    background: rgba(228, 228, 222, 0.8) !important;
+    background-color: rgba(228, 228, 222, 0.8) !important;
+    color: #252422 !important;
+  }
   
   .modern-textarea {
-    @apply w-full px-4 py-3 bg-ivory-200/80 border border-sage-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-moss-500 focus:border-transparent resize-none text-noir-900;
-    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out, background-color 0.15s ease-out;
-    will-change: border-color, box-shadow;
+    width: 100% !important;
+    padding: 12px 16px !important;
+    background: rgba(228, 228, 222, 0.8) !important;
+    background-color: rgba(228, 228, 222, 0.8) !important;
+    border: 1px solid #CCC5B9 !important;
+    border-radius: 12px !important;
+    outline: none !important;
+    color: #252422 !important;
+    font-family: 'Inter', Arial, sans-serif !important;
+    font-size: 16px !important;
+    resize: none !important;
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+  }
+  
+  .modern-textarea:focus {
+    background: rgba(228, 228, 222, 0.8) !important;
+    background-color: rgba(228, 228, 222, 0.8) !important;
+    border: 1px solid #595f39 !important;
+    border-color: #595f39 !important;
+    box-shadow: 0 0 0 2px rgba(89, 95, 57, 0.2) !important;
+    outline: none !important;
+    color: #252422 !important;
   }
   
   
@@ -358,6 +440,42 @@
   }
 }
 
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-belt {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-smooth {
+  0% {
+    transform: translateX(200px);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-12.5%);
+  }
+}
+
 /* Animation Classes */
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out;
@@ -373,6 +491,96 @@
 
 .animate-bounce-gentle {
   animation: bounce 2s infinite;
+}
+
+.animate-scroll-infinite {
+  animation: scroll-infinite 45s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.animate-scroll-belt {
+  animation: scroll-belt 35s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.animate-scroll-smooth {
+  animation: scroll-smooth 60s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 80s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+/* Kevin Powell's true infinite scroll technique */
+.scroller {
+  max-width: 100%;
+  overflow: hidden;
+  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+.scroller__inner {
+  padding-block: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.scroller[data-animated="true"] {
+  overflow: hidden;
+  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+.scroller[data-animated="true"] .scroller__inner {
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-speed="fast"] {
+  --_animation-duration: 90s;
+}
+
+.scroller[data-speed="slow"] {
+  --_animation-duration: 60s;
+}
+
+.scroller[data-direction="right"] {
+  --_animation-direction: reverse;
+}
+
+.scroller__item {
+  padding: 1rem 2rem;
+  background: transparent;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes scroll {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroller[data-animated="true"] {
+    overflow: auto;
+  }
+  
+  .scroller[data-animated="true"] .scroller__inner {
+    animation: none;
+  }
 }
 
 /* Stagger Animation Delays */

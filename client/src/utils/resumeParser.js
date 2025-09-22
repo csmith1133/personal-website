@@ -73,30 +73,52 @@ export const parseExperience = (experienceText) => {
 export const parseSkills = (skillsText) => {
   const skillCategories = [];
   
-  // Find all \cvskill blocks
-  const skillMatches = skillsText.match(/\\cvskill\s*\{([^}]+)\}\s*%\s*Category\s*\{([^}]+)\}/g);
+  // Split by \cvskill blocks - handle multiline format
+  const skillBlocks = skillsText.split('\\cvskill');
   
-  if (skillMatches) {
-    skillMatches.forEach(match => {
-      const categoryMatch = match.match(/\\cvskill\s*\{([^}]+)\}\s*%\s*Category/);
-      const skillsMatch = match.match(/\}\s*\{([^}]+)\}\s*$/);
+  for (let i = 1; i < skillBlocks.length; i++) {
+    const block = skillBlocks[i];
+    
+    // Extract category and skills - handle multiline format
+    const lines = block.split('\n').map(line => line.trim());
+    let category = '';
+    let skillsString = '';
+    
+    for (const line of lines) {
+      // Look for category line: {Data Analysis \& BI} % Category
+      const categoryMatch = line.match(/^\{([^}]+)\}\s*%\s*Category/);
+      if (categoryMatch) {
+        category = categoryMatch[1]
+          .replace(/\\\$/g, '$')
+          .replace(/\\&/g, '&')
+          .replace(/\\%/g, '%')
+          .replace(/\\\\/g, '\\')
+          .trim();
+      }
       
-      if (categoryMatch && skillsMatch) {
-        const category = categoryMatch[1];
-        const skillsString = skillsMatch[1];
-        
+      // Look for skills line: {SQL, Python, ...} % Skills
+      const skillsMatch = line.match(/^\{([^}]+)\}\s*%\s*Skills/);
+      if (skillsMatch) {
+        skillsString = skillsMatch[1];
+      }
+    }
+    
+    if (category && skillsString) {
         // Split skills by comma and clean up
         const technologies = skillsString
           .split(',')
-          .map(skill => skill.trim())
+          .map(skill => skill.trim()
+            .replace(/\\\$/g, '$')
+            .replace(/\\&/g, '&')
+            .replace(/\\%/g, '%')
+            .replace(/\\\\/g, '\\'))
           .filter(skill => skill.length > 0);
-        
-        skillCategories.push({
-          category,
-          technologies
-        });
-      }
-    });
+      
+      skillCategories.push({
+        category,
+        technologies
+      });
+    }
   }
   
   return skillCategories;

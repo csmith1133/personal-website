@@ -54,6 +54,7 @@ const Contact = () => {
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Contact form error:', error);
+      console.error('Error details:', error.response?.data || error.message);
       toast.error('Failed to send message. Please try again or contact me directly.');
     } finally {
       setIsSubmitting(false);
