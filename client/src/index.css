@@ -583,6 +583,16 @@
   }
 }
 
+/* Tech Logo Styles - Maintain grayscale consistently */
+.tech-logo {
+  filter: grayscale(100%) opacity(0.6) !important;
+  transition: filter 0.3s ease-in-out !important;
+}
+
+.tech-logo:hover {
+  filter: grayscale(0%) opacity(1) !important;
+}
+
 /* Stagger Animation Delays */
 .delay-75 { animation-delay: 75ms; }
 .delay-100 { animation-delay: 100ms; }

@@ -1,65 +1,110 @@
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from '../components/InfiniteScroll';
-import { parseSkills } from '../utils/resumeParser';
+import { parseExperience } from '../utils/resumeParser';
 
 const About = () => {
-  const [skills, setSkills] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-
-  // Load skills from resume
-  useEffect(() => {
-    const loadSkills = async () => {
-      try {
-        const response = await fetch('/api/resume-skills');
-        if (response.ok) {
-          const result = await response.json();
-          if (result.success) {
-            const parsedSkills = parseSkills(result.data);
-            setSkills(parsedSkills);
-          }
-        }
-      } catch (error) {
-        console.error('Error loading skills from resume:', error);
-        // Fallback to empty array
-        setSkills([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadSkills();
-  }, []);
+  const [yearsOfExperience, setYearsOfExperience] = useState('5+');
 
   // Keep original skills as fallback (can be removed later)
   const fallbackSkills = [
     {
       category: 'Data Analysis & BI',
+      icon: (
+        <svg className="w-8 h-8 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
       technologies: ['Tableau', 'Power BI', 'Snowflake', 'ETL Pipelines', 'Data Automation', 'Financial Modeling', 'AI Integration']
     },
     {
-      category: 'Finance & Process Optimization',
+      category: 'Finance & Strategy',
+      icon: (
+        <svg className="w-8 h-8 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
       technologies: ['Cost Analysis', 'Budgeting & Forecasting', 'Business Strategy', 'Financial Reporting']
     },
     {
-      category: 'Project & Operations Management',
+      category: 'Project Management',
+      icon: (
+        <svg className="w-8 h-8 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+        </svg>
+      ),
       technologies: ['Project Management (PMP)', 'Six Sigma (CSSGB)', 'Logistics', 'Inventory Control']
     },
     {
-      category: 'Programming & Scripting',
+      category: 'Development',
+      icon: (
+        <svg className="w-8 h-8 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+      ),
       technologies: ['SQL', 'Python', 'JavaScript', 'HTML', 'CSS', 'Git']
     },
     {
       category: 'Tools & Collaboration',
-      technologies: ['Jira', 'MS Office', 'Google Drive', 'Streamlit', 'Monday.com', 'Slack']
+      icon: (
+        <svg className="w-8 h-8 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
+      technologies: ['Jira', 'MS Office', 'Google Drive', 'Monday.com', 'Slack']
     }
   ];
 
+  // Load experience data to calculate years of experience dynamically
+  useEffect(() => {
+    const loadExperienceData = async () => {
+      try {
+        const response = await fetch('/api/resume-experience');
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            const experienceEntries = parseExperience(result.data);
+            
+            // Find the earliest start year from all roles
+            const allYears = [];
+            experienceEntries.forEach(entry => {
+              const period = entry.period.trim();
+              
+              // Try to match full period: "Feb. 2019 - Feb. 2021" or "May 2021 - Present"
+              const fullPeriodMatch = period.match(/(\w+\.?)\s+(\d{4})\s*-\s*(?:(\w+\.?)\s+(\d{4})|Present)/);
+              if (fullPeriodMatch) {
+                allYears.push(parseInt(fullPeriodMatch[2]));
+              } else {
+                // Try single date: "May 2021"
+                const singleDateMatch = period.match(/(\w+\.?)\s+(\d{4})/);
+                if (singleDateMatch) {
+                  allYears.push(parseInt(singleDateMatch[2]));
+                }
+              }
+            });
+            
+            if (allYears.length > 0) {
+              const earliestYear = Math.min(...allYears);
+              const currentYear = new Date().getFullYear();
+              const calculatedYears = currentYear - earliestYear;
+              setYearsOfExperience(`${calculatedYears}+`);
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error loading experience data for years calculation:', error);
+        // Keep default fallback
+      }
+    };
+
+    loadExperienceData();
+  }, []);
+
   const stats = [
     { number: '25+', label: 'Projects Delivered' },
-    { number: '5+', label: 'Years Experience' },
-    { number: '95%', label: 'On-Time Delivery' },
+    { number: yearsOfExperience, label: 'Years Experience' },
+    { number: '100+', label: 'Team Members Trained' },
     { number: '$500K+', label: 'Cost Savings Achieved' }
   ];
 
@@ -158,39 +203,35 @@ const About = () => {
             </p>
           </motion.div>
 
-          {loading ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="flex justify-center py-12"
-            >
-              <div className="text-lg text-noir-600">Loading skills from resume...</div>
-            </motion.div>
-          ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-              {(skills.length > 0 ? skills : fallbackSkills).map((skillGroup, index) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            {fallbackSkills.map((skillGroup, index) => (
               <motion.div
                 key={skillGroup.category}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card p-6"
+                className="card p-6 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
               >
-                <h3 className="text-lg font-bold text-noir-900 mb-3">
+                <div className="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {skillGroup.icon || (
+                    <svg className="w-8 h-8 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  )}
+                </div>
+                <h3 className="text-lg font-bold text-noir-900 mb-4 leading-tight">
                   {skillGroup.category}
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-1.5">
                   {skillGroup.technologies.map((tech, techIndex) => (
-                    <li key={techIndex} className="flex items-center">
-                      <div className="w-1.5 h-1.5 bg-moss-500 rounded-full mr-2 flex-shrink-0"></div>
-                      <span className="text-noir-600 text-sm leading-tight">{tech}</span>
+                    <li key={techIndex} className="text-center text-sm">
+                      <span className="text-noir-700 font-medium leading-tight group-hover:text-noir-900 transition-colors duration-300 whitespace-nowrap">{tech}</span>
                     </li>
                   ))}
                 </ul>
               </motion.div>
-              ))}
-            </div>
-          )}
+            ))}
+          </div>
         </div>
       </section>
 
@@ -222,16 +263,7 @@ const About = () => {
                       alt={tech.name}
                       className={`${
                         tech.isLarge ? 'w-20 h-20' : tech.isSmall ? 'w-16 h-16' : 'w-20 h-20'
-                      } object-contain`}
-                      style={{
-                        filter: 'grayscale(100%) opacity(0.6)',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.filter = 'grayscale(0%) opacity(1)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.filter = 'grayscale(100%) opacity(0.6)';
-                      }}
+                      } object-contain tech-logo`}
                       onError={(e) => {
                         e.target.style.display = 'none';
                       }}
@@ -262,16 +294,7 @@ const About = () => {
                       alt={tech.name}
                       className={`${
                         tech.isLarge ? 'w-20 h-20' : tech.isSmall ? 'w-16 h-16' : 'w-20 h-20'
-                      } object-contain`}
-                      style={{
-                        filter: 'grayscale(100%) opacity(0.6)',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.filter = 'grayscale(0%) opacity(1)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.filter = 'grayscale(100%) opacity(0.6)';
-                      }}
+                      } object-contain tech-logo`}
                       onError={(e) => {
                         e.target.style.display = 'none';
                       }}

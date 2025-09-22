@@ -163,7 +163,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-base font-bold text-noir-900">Currently Available</h3>
-                    <p className="text-noir-600 text-sm">Open to new projects</p>
+                    <p className="text-noir-600 text-sm">Flexible Availability</p>
                   </div>
                 </div>
               </motion.div>
