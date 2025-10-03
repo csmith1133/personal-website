@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import InfiniteScroll from '../components/InfiniteScroll';
 import { parseExperience } from '../utils/resumeParser';
 
@@ -56,50 +56,54 @@ const About = () => {
     }
   ];
 
-  // Load experience data to calculate years of experience dynamically
-  useEffect(() => {
-    const loadExperienceData = async () => {
-      try {
-        const response = await fetch('/api/resume-experience');
-        if (response.ok) {
-          const result = await response.json();
-          if (result.success) {
-            const experienceEntries = parseExperience(result.data);
-            
-            // Find the earliest start year from all roles
-            const allYears = [];
-            experienceEntries.forEach(entry => {
-              const period = entry.period.trim();
-              
-              // Try to match full period: "Feb. 2019 - Feb. 2021" or "May 2021 - Present"
-              const fullPeriodMatch = period.match(/(\w+\.?)\s+(\d{4})\s*-\s*(?:(\w+\.?)\s+(\d{4})|Present)/);
-              if (fullPeriodMatch) {
-                allYears.push(parseInt(fullPeriodMatch[2]));
-              } else {
-                // Try single date: "May 2021"
-                const singleDateMatch = period.match(/(\w+\.?)\s+(\d{4})/);
-                if (singleDateMatch) {
-                  allYears.push(parseInt(singleDateMatch[2]));
-                }
+useEffect(() => {
+  const loadExperienceData = async () => {
+    const API_URL =
+      process.env.REACT_APP_API_URL ||
+      (window.location.hostname === "localhost"
+        ? "http://localhost:8003"
+        : "https://personal-backend.iamcharliesmith.com");
+
+    try {
+      const response = await fetch(`${API_URL}/api/resume-experience`);
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          const experienceEntries = parseExperience(result.data);
+
+          const allYears = [];
+          experienceEntries.forEach(entry => {
+            const period = entry.period.trim();
+
+            const fullPeriodMatch = period.match(
+              /(\w+\.?)\s+(\d{4})\s*-\s*(?:(\w+\.?)\s+(\d{4})|Present)/
+            );
+            if (fullPeriodMatch) {
+              allYears.push(parseInt(fullPeriodMatch[2]));
+            } else {
+              const singleDateMatch = period.match(/(\w+\.?)\s+(\d{4})/);
+              if (singleDateMatch) {
+                allYears.push(parseInt(singleDateMatch[2]));
               }
-            });
-            
-            if (allYears.length > 0) {
-              const earliestYear = Math.min(...allYears);
-              const currentYear = new Date().getFullYear();
-              const calculatedYears = currentYear - earliestYear;
-              setYearsOfExperience(`${calculatedYears}+`);
             }
+          });
+
+          if (allYears.length > 0) {
+            const earliestYear = Math.min(...allYears);
+            const currentYear = new Date().getFullYear();
+            const calculatedYears = currentYear - earliestYear;
+            setYearsOfExperience(`${calculatedYears}+`);
           }
         }
-      } catch (error) {
-        console.error('Error loading experience data for years calculation:', error);
-        // Keep default fallback
       }
-    };
+    } catch (error) {
+      console.error('Error loading experience data for years calculation:', error);
+    }
+  };
 
-    loadExperienceData();
-  }, []);
+  loadExperienceData();
+}, []);
+
 
   const stats = [
     { number: '25+', label: 'Projects Delivered' },

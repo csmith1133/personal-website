@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 const Contact = () => {
@@ -47,6 +47,15 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+  
+    const API_URL =
+      process.env.REACT_APP_API_URL ||
+      (window.location.hostname === "localhost"
+        ? "http://localhost:8003" // ✅ if dev environment
+        : "https://personal-backend.iamcharliesmith.com" // ✅ if production
+    );
+
+    const response = await axios.post(`${API_URL}/api/contact`, formData);
 
     try {
       console.log('🚀 Frontend sending data:', formData);
