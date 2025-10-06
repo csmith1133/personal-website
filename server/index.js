@@ -351,6 +351,24 @@ app.get('/api/resume-experience', async (req, res) => {
   }
 });
 
+app.get('/api/resume-experience', async (req, res) => {
+  try {
+    const experiencePath = path.join(__dirname, 'resume/resume/experience.tex');
+    const experienceText = fs.readFileSync(experiencePath, 'utf8');
+    
+    res.json({
+      success: true,
+      data: experienceText
+    });
+  } catch (error) {
+    console.error('Error reading experience file:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to read experience data'
+    });
+  }
+});
+
 app.get('/api/resume-skills', async (req, res) => {
   try {
     const skillsPath = path.join(__dirname, 'resume/resume/skills.tex');

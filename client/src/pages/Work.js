@@ -1,15 +1,19 @@
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createTimelineFromResume, parseCertificates, parseEducation, parseExperience } from '../utils/resumeParser';
 
 const Work = () => {
   const [timeline, setTimeline] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [debugInfo, setDebugInfo] = useState('');
 
   // Load resume data on component mount
   useEffect(() => {
     const loadResumeData = async () => {
       try {
+        // Use relative URLs so API calls go through the same domain/protocol
+        // This avoids mixed content issues and uses the nginx proxy configuration
+        
         // Fetch all resume data in parallel
         const [experienceResponse, certificatesResponse, educationResponse] = await Promise.all([
           fetch('/api/resume-experience'),
@@ -24,30 +28,76 @@ const Work = () => {
         // Parse experience data
         if (experienceResponse.ok) {
           const experienceResult = await experienceResponse.json();
+          console.log('Experience API response:', experienceResult);
+          setDebugInfo(prev => prev + `Experience API: ${experienceResult.success ? 'OK' : 'FAIL'}\n`);
           if (experienceResult.success) {
             experienceEntries = parseExperience(experienceResult.data);
+            console.log('Parsed experience entries:', experienceEntries);
+            setDebugInfo(prev => prev + `Parsed ${experienceEntries.length} experience entries\n`);
           }
         }
         
         // Parse certificates data
         if (certificatesResponse.ok) {
           const certificatesResult = await certificatesResponse.json();
+          console.log('Certificates API response:', certificatesResult);
           if (certificatesResult.success) {
             certificates = parseCertificates(certificatesResult.data);
+            console.log('Parsed certificates:', certificates);
           }
         }
         
         // Parse education data
         if (educationResponse.ok) {
           const educationResult = await educationResponse.json();
+          console.log('Education API response:', educationResult);
           if (educationResult.success) {
             education = parseEducation(educationResult.data);
+            console.log('Parsed education:', education);
           }
         }
         
         // Create timeline from all parsed data
         const resumeTimeline = createTimelineFromResume(experienceEntries, certificates, education);
-        setTimeline(resumeTimeline);
+        console.log('Final timeline:', resumeTimeline);
+        setDebugInfo(prev => prev + `Created timeline with ${resumeTimeline.length} items\n`);
+        
+        // Temporary fallback timeline for debugging
+        if (resumeTimeline.length === 0) {
+          console.log('Timeline is empty, using fallback');
+          setDebugInfo(prev => prev + 'Using fallback timeline\n');
+          setTimeline([
+            {
+              year: "2024 - Present",
+              company: "HelloFresh",
+              description: "Leading business intelligence initiatives and data-driven decision making.",
+              type: "work",
+              roles: [
+                {
+                  title: "Manager, Business Intelligence (Finance)",
+                  period: "Jan 2024 - Present",
+                  achievements: ["Developed BI strategies", "Created ETL pipelines", "Built interactive dashboards"]
+                }
+              ]
+            },
+            {
+              year: "2019 - 2021", 
+              company: "Stonecrop Technologies",
+              description: "Project management and inventory control expertise.",
+              type: "work",
+              roles: [
+                {
+                  title: "Project Manager",
+                  period: "Feb. 2019 - Feb. 2021",
+                  achievements: ["Led Nokia small cell program", "Achieved 99.8% inventory accuracy", "Managed $2.5M in assets"]
+                }
+              ]
+            }
+          ]);
+        } else {
+          setDebugInfo(prev => prev + 'Using parsed timeline\n');
+          setTimeline(resumeTimeline);
+        }
         
       } catch (error) {
         console.error('Error loading resume data:', error);
@@ -416,6 +466,20 @@ const Work = () => {
                 >
                   <div className="text-lg text-noir-600">Loading work experience from resume...</div>
                 </motion.div>
+              ) : timeline.length === 0 ? (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="flex flex-col items-center py-12"
+                >
+                  <div className="text-lg text-noir-600 mb-4">
+                    No timeline data found. Timeline length: {timeline.length}
+                  </div>
+                  <div className="text-sm text-noir-500 bg-gray-100 p-4 rounded max-w-2xl">
+                    <strong>Debug Info:</strong>
+                    <pre>{debugInfo}</pre>
+                  </div>
+                </motion.div>
               ) : (
                 timeline.map((item, index) => (
                 <motion.div
@@ -515,7 +579,7 @@ const Work = () => {
                     )}
                   </div>
                 </motion.div>
-              ))
+                ))
               )}
             </div>
           </div>

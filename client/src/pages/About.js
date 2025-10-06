@@ -56,16 +56,10 @@ const About = () => {
     }
   ];
 
-useEffect(() => {
+  useEffect(() => {
   const loadExperienceData = async () => {
-    const API_URL =
-      process.env.REACT_APP_API_URL ||
-      (window.location.hostname === "localhost"
-        ? "http://localhost:5001"
-        : "http://charlie-personal-website-backend:5000");
-
     try {
-      const response = await fetch(`${API_URL}/api/resume-experience`);
+      const response = await fetch('/api/resume-experience');
       if (response.ok) {
         const result = await response.json();
         if (result.success) {

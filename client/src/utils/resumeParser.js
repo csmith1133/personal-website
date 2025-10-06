@@ -31,6 +31,10 @@ export const parseExperience = (experienceText) => {
         currentLocation = location;
       }
       
+      // Use current company if no organization is specified
+      const companyName = (org && org !== '') ? org : currentCompany;
+      const companyLocation = (location && location !== '') ? location : currentLocation;
+      
       // Extract responsibilities
       const responsibilities = [];
       const itemMatches = block.match(/\\item\s*\{([^}]+)\}/g);
@@ -58,8 +62,8 @@ export const parseExperience = (experienceText) => {
       
       entries.push({
         title: cleanTitle,
-        company: currentCompany,
-        location: currentLocation,
+        company: companyName,
+        location: companyLocation,
         period,
         responsibilities
       });
