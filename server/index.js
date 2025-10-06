@@ -252,7 +252,7 @@ app.get('/api/placeholder/:width/:height', (req, res) => {
 // Resume download endpoint with LaTeX compilation
 app.get('/api/resume/download', async (req, res) => {
   try {
-    const resumePath = path.join(__dirname, '..', 'resume');
+    const resumePath = path.join(__dirname, 'resume');
     const outputPath = path.join(resumePath, 'output');
     
     // Ensure output directory exists
@@ -335,7 +335,7 @@ app.use((err, req, res, next) => {
 // Resume data endpoints
 app.get('/api/resume-experience', async (req, res) => {
   try {
-    const experiencePath = path.join(__dirname, '../resume/resume/experience.tex');
+    const experiencePath = path.join(__dirname, 'resume/resume/experience.tex');
     const experienceText = fs.readFileSync(experiencePath, 'utf8');
     
     res.json({
@@ -353,7 +353,7 @@ app.get('/api/resume-experience', async (req, res) => {
 
 app.get('/api/resume-skills', async (req, res) => {
   try {
-    const skillsPath = path.join(__dirname, '../resume/resume/skills.tex');
+    const skillsPath = path.join(__dirname, 'resume/resume/skills.tex');
     const skillsText = fs.readFileSync(skillsPath, 'utf8');
     
     res.json({
@@ -371,7 +371,7 @@ app.get('/api/resume-skills', async (req, res) => {
 
 app.get('/api/resume-certificates', async (req, res) => {
   try {
-    const certificatesPath = path.join(__dirname, '../resume/resume/certificates.tex');
+    const certificatesPath = path.join(__dirname, 'resume/resume/certificates.tex');
     const certificatesText = fs.readFileSync(certificatesPath, 'utf8');
     
     res.json({
@@ -389,7 +389,7 @@ app.get('/api/resume-certificates', async (req, res) => {
 
 app.get('/api/resume-education', async (req, res) => {
   try {
-    const educationPath = path.join(__dirname, '../resume/resume/education.tex');
+    const educationPath = path.join(__dirname, 'resume/resume/education.tex');
     const educationText = fs.readFileSync(educationPath, 'utf8');
     
     res.json({
