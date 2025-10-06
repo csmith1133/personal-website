@@ -2,11 +2,16 @@ FROM node:20-bullseye-slim
 WORKDIR /app
 ENV NODE_ENV=production
 
-# Install LaTeX with minimal packages for faster builds
+# Install LaTeX with packages needed for awesome-cv resume
 RUN apt-get update && apt-get install -y \
     texlive-latex-base \
     texlive-xetex \
+    texlive-latex-extra \
     texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-luatex \
+    fonts-font-awesome \
+    fonts-source-sans-pro \
     && rm -rf /var/lib/apt/lists/* \
     && fc-cache -fv
 

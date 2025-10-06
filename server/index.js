@@ -282,10 +282,13 @@ app.get('/api/resume/download', async (req, res) => {
     exec(compileCommand, { timeout: 30000 }, async (error, stdout, stderr) => {
       if (error) {
         console.error('LaTeX compilation error:', error);
+        console.error('LaTeX stdout:', stdout);
+        console.error('LaTeX stderr:', stderr);
         return res.status(500).json({
           success: false,
           message: 'Failed to generate resume PDF',
-          error: 'LaTeX compilation failed'
+          error: 'LaTeX compilation failed',
+          details: stderr || stdout || error.message
         });
       }
       

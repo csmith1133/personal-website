@@ -209,7 +209,10 @@ const Work = () => {
         // Handle error response
         const errorData = await response.json();
         console.error('Resume download error:', errorData);
-        alert(`Error: ${errorData.message || 'Failed to download resume'}`);
+        const errorMessage = errorData.details 
+          ? `Error: ${errorData.message}\n\nDetails: ${errorData.details}`
+          : `Error: ${errorData.message || 'Failed to download resume'}`;
+        alert(errorMessage);
       }
     } catch (error) {
       console.error('Error downloading resume:', error);
