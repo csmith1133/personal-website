@@ -62,7 +62,7 @@ useEffect(() => {
       process.env.REACT_APP_API_URL ||
       (window.location.hostname === "localhost"
         ? "http://localhost:5001"
-        : "https://personal-backend.iamcharliesmith.com");
+        : "http://charlie-personal-website-backend:5000");
 
     try {
       const response = await fetch(`${API_URL}/api/resume-experience`);

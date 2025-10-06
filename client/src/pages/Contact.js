@@ -52,7 +52,7 @@ const Contact = () => {
       process.env.REACT_APP_API_URL ||
       (window.location.hostname === "localhost"
         ? "http://localhost:5001" // ✅ if dev environment
-        : "https://personal-backend.iamcharliesmith.com" // ✅ if production
+        : "http://charlie-personal-website-backend:5000" // ✅ if production
     );
 
     const response = await axios.post(`${API_URL}/api/contact`, formData);
