@@ -1,17 +1,6 @@
-FROM node:20-bullseye-slim
+FROM node:20-alpine
 WORKDIR /app
 ENV NODE_ENV=production
-
-# Install LaTeX and XeLaTeX for Debian/Ubuntu
-RUN apt-get update && apt-get install -y \
-    texlive \
-    texlive-xetex \
-    texlive-latex-extra \
-    texlive-fonts-recommended \
-    fontconfig \
-    && rm -rf /var/lib/apt/lists/* \
-    && fc-cache -fv
-
 COPY package*.json ./
 RUN npm ci --omit=dev
 COPY . .
