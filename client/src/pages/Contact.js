@@ -51,7 +51,7 @@ const Contact = () => {
     const API_URL =
       process.env.REACT_APP_API_URL ||
       (window.location.hostname === "localhost"
-        ? "http://localhost:8003" // ✅ if dev environment
+        ? "http://localhost:5001" // ✅ if dev environment
         : "https://personal-backend.iamcharliesmith.com" // ✅ if production
     );
 
