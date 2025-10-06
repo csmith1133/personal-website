@@ -1,6 +1,15 @@
 FROM node:20-alpine
 WORKDIR /app
 ENV NODE_ENV=production
+
+# Install LaTeX and required packages
+RUN apk add --no-cache \
+    texlive \
+    texlive-xetex \
+    texlive-latex-extra \
+    fontconfig \
+    && fc-cache -fv
+
 COPY package*.json ./
 RUN npm ci --omit=dev
 COPY . .
