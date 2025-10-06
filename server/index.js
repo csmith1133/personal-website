@@ -249,19 +249,37 @@ app.get('/api/placeholder/:width/:height', (req, res) => {
   res.redirect(`https://via.placeholder.com/${width}x${height}/4f46e5/ffffff?text=Project+Image`);
 });
 
-// Resume download endpoint with LaTeX compilation
+// Resume download endpoint with optimized LaTeX compilation
 app.get('/api/resume/download', async (req, res) => {
   try {
     const resumePath = path.join(__dirname, 'resume');
     const outputPath = path.join(resumePath, 'output');
+    const pdfPath = path.join(outputPath, 'resume.pdf');
+    
+    // Check if PDF already exists and is recent (within 1 hour)
+    if (await fs.pathExists(pdfPath)) {
+      const stats = await fs.stat(pdfPath);
+      const now = new Date();
+      const fileAge = now - stats.mtime;
+      const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
+      
+      if (fileAge < oneHour) {
+        // Serve cached PDF
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename="Charlie_Smith_Resume.pdf"');
+        const pdfStream = fs.createReadStream(pdfPath);
+        pdfStream.pipe(res);
+        return;
+      }
+    }
     
     // Ensure output directory exists
     await fs.ensureDir(outputPath);
     
-    // Compile LaTeX to PDF
-    const compileCommand = `cd "${resumePath}" && xelatex -output-directory="${outputPath}" resume.tex`;
+    // Optimized LaTeX compilation with faster options
+    const compileCommand = `cd "${resumePath}" && xelatex -interaction=nonstopmode -output-directory="${outputPath}" -halt-on-error resume.tex`;
     
-    exec(compileCommand, async (error, stdout, stderr) => {
+    exec(compileCommand, { timeout: 30000 }, async (error, stdout, stderr) => {
       if (error) {
         console.error('LaTeX compilation error:', error);
         return res.status(500).json({
@@ -270,8 +288,6 @@ app.get('/api/resume/download', async (req, res) => {
           error: 'LaTeX compilation failed'
         });
       }
-      
-      const pdfPath = path.join(outputPath, 'resume.pdf');
       
       // Check if PDF was generated
       if (await fs.pathExists(pdfPath)) {

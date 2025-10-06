@@ -1,6 +1,15 @@
-FROM node:20-alpine
+FROM node:20-bullseye-slim
 WORKDIR /app
 ENV NODE_ENV=production
+
+# Install LaTeX with minimal packages for faster builds
+RUN apt-get update && apt-get install -y \
+    texlive-latex-base \
+    texlive-xetex \
+    texlive-fonts-recommended \
+    && rm -rf /var/lib/apt/lists/* \
+    && fc-cache -fv
+
 COPY package*.json ./
 RUN npm ci --omit=dev
 COPY . .
