@@ -48,15 +48,6 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
   
-    const API_URL =
-      process.env.REACT_APP_API_URL ||
-      (window.location.hostname === "localhost"
-        ? "http://localhost:5001" // ✅ if dev environment
-        : "http://charlie-personal-website-backend:5000" // ✅ if production
-    );
-
-    const response = await axios.post(`${API_URL}/api/contact`, formData);
-
     try {
       console.log('🚀 Frontend sending data:', formData);
       console.log('🌐 Making request to:', '/api/contact');
