@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import InfiniteScroll from '../components/InfiniteScroll';
 import { parseExperience } from '../utils/resumeParser';
 
@@ -12,11 +13,12 @@ const About = () => {
       category: 'Data Analysis & BI',
       icon: (
         <svg className="w-8 h-8 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15v4m6-6v6m6-4v4m6-6v6M3 11l6-5 6 5 5.5-5.5" />
         </svg>
       ),
       technologies: ['Tableau', 'Power BI', 'Snowflake', 'ETL Pipelines', 'Data Automation', 'Financial Modeling', 'AI Integration']
     },
+    
     {
       category: 'Finance & Strategy',
       icon: (
@@ -52,7 +54,7 @@ const About = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       ),
-      technologies: ['Jira', 'MS Office', 'Google Drive', 'Monday.com', 'Slack']
+      technologies: ['Jira', 'MS Office', 'Google Drive', 'Slack']
     }
   ];
 
@@ -111,32 +113,32 @@ const About = () => {
       {/* Hero Section */}
       <section className="pb-16 modern-gradient">
         <div className="modern-container">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-6xl font-bold text-noir-900 mb-6">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-noir-900 mb-6">
                 About <span className="gradient-text">Me</span>
               </h1>
-              <p className="text-lg md:text-xl text-noir-600 mb-6 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-noir-600 mb-6 leading-relaxed">
                 I'm a dedicated Project Manager and Business Intelligence Leader with over 5 years of experience 
                 combining strategic leadership with deep technical expertise. I specialize in SQL, advanced BI tools, with growing Python skills and AI integration 
                 to transform complex business challenges into scalable analytics solutions that deliver measurable results.
               </p>
-              <p className="text-lg text-noir-600 mb-8 leading-relaxed">
-                When I'm not leading strategic initiatives, you'll find me crafting complex SQL queries, designing interactive Tableau dashboards, 
+              <p className="text-base sm:text-lg text-noir-600 mb-8 leading-relaxed">
+                When I'm not leading strategic initiatives, you'll find me crafting complex SQL queries, designing interactive Tableau/Power BI dashboards, 
                 architecting data solutions, and implementing intelligent reporting systems that empower executives with real-time insights for strategic decision making.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <button className="btn-primary">
                   Download Resume
                 </button>
-                <button className="btn-secondary">
+                <Link to="/contact" className="btn-secondary">
                   Let's Connect
-                </button>
+                </Link>
               </div>
             </motion.div>
 
@@ -148,12 +150,16 @@ const About = () => {
               className="relative"
             >
               <div className="relative z-10">
-                <div className="w-full h-96 bg-gradient-to-br from-sage-200 to-sage-300 rounded-2xl shadow-2xl flex items-center justify-center">
-                  <span className="text-6xl font-bold text-noir-600">CS</span>
+                <div className="w-full h-80 sm:h-96 bg-gradient-to-br from-sage-200 to-sage-300 rounded-2xl shadow-2xl flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/logos/initials.png" 
+                    alt="Charlie Smith Initials" 
+                    className="w-80 h-80 sm:w-96 sm:h-96 object-contain"
+                  />
                 </div>
               </div>
               {/* Background decoration */}
-              <div className="absolute top-8 left-8 w-full h-96 bg-gradient-to-br from-moss-200 to-moss-300 rounded-2xl -z-10"></div>
+              <div className="absolute top-6 left-6 sm:top-8 sm:left-8 w-full h-80 sm:h-96 bg-gradient-to-br from-moss-200 to-moss-300 rounded-2xl -z-10"></div>
             </motion.div>
           </div>
         </div>
@@ -163,7 +169,7 @@ const About = () => {
       {/* Stats Section */}
       <section className="py-10 bg-ivory-200/30">
         <div className="modern-container">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -172,10 +178,10 @@ const About = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-3xl md:text-4xl font-bold text-noir-900 mb-2">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-noir-900 mb-2">
                   {stat.number}
                 </div>
-                <div className="text-noir-600 font-medium">
+                <div className="text-sm sm:text-base text-noir-600 font-medium">
                   {stat.label}
                 </div>
               </motion.div>
@@ -193,22 +199,22 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-10"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-noir-900 mb-2">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-noir-900 mb-2">
               Skills & <span className="gradient-text">Technologies</span>
             </h2>
-            <p className="text-lg md:text-xl text-noir-600 font-medium max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-noir-600 font-medium max-w-2xl mx-auto">
               Strategic expertise and methodologies for driving organizational success
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
             {fallbackSkills.map((skillGroup, index) => (
               <motion.div
                 key={skillGroup.category}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card p-6 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
+                className="card p-4 sm:p-6 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
               >
                 <div className="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   {skillGroup.icon || (
@@ -234,7 +240,7 @@ const About = () => {
       </section>
 
           {/* Tech Logo Ribbon - Kevin Powell Style */}
-          <section className="py-8 bg-ivory-100/50 overflow-hidden">
+          <section className="py-4 bg-ivory-100/50 overflow-hidden">
             <div className="relative">
               <InfiniteScroll />
               <div className="scroller" data-speed="fast">
@@ -309,7 +315,7 @@ const About = () => {
           </section>
 
       {/* Personal Values Section */}
-      <section className="py-10 bg-ivory-200/30">
+      <section className="py-6 bg-ivory-200/30">
         <div className="modern-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -348,7 +354,7 @@ const About = () => {
               {
                 icon: (
                   <svg className="w-12 h-12 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15v4m6-6v6m6-4v4m6-6v6M3 11l6-5 6 5 5.5-5.5" />
                   </svg>
                 ),
                 title: 'Business Intelligence',

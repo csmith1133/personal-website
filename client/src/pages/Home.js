@@ -72,7 +72,7 @@ const Home = () => {
 
       {/* Main Content */}
       <div className="relative z-10 modern-container">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Side - Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -80,16 +80,71 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            {/* Name */}
-            <div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-noir-900 mb-4">
-                Charlie{' '}
-                <span className="gradient-text">Smith</span>
-              </h1>
+            {/* Name and Profile Image Row (Mobile) */}
+            <div className="flex flex-col lg:flex-col items-start space-y-4 lg:space-y-0">
+              {/* Mobile Layout: Name + Image side by side with type animation at bottom */}
+              <div className="lg:hidden w-full">
+                <div className="flex items-start space-x-3 w-full">
+                  {/* Left side: Name and Type Animation stacked */}
+                  <div className="flex-1 flex flex-col justify-between" style={{ height: '128px' }}>
+                    {/* Name positioned in middle of image height */}
+                    <div className="flex items-center" style={{ height: '64px' }}>
+                      <h1 className="text-4xl sm:text-4xl font-bold text-noir-900">
+                        Charlie{' '}
+                        <span className="gradient-text">Smith</span>
+                      </h1>
+                    </div>
+                    
+                    {/* Type Animation at bottom of image */}
+                    <div className="flex items-end" style={{ height: '64px' }}>
+                      <TypeAnimation
+                        sequence={[
+                          'Business Intelligence Leader',
+                          2000,
+                          'Project Manager',
+                          2000,
+                          'SQL Expert & Python Developer',
+                          2000,
+                          'Tableau & Power BI Specialist',
+                          2000,
+                          'ETL & Analytics Professional',
+                          2000,
+                          'AI-Driven Analytics Specialist',
+                          2000,
+                          'PMP Certified Professional',
+                          2000,
+                        ]}
+                        wrapper="h2"
+                        speed={50}
+                        className="text-lg sm:text-xl font-medium text-noir-600 overflow-hidden"
+                        repeat={Infinity}
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Profile Image (Mobile - to the right) */}
+                  <div className="w-32 h-32 sm:w-36 sm:h-36 bg-gradient-to-br from-sage-200 to-sage-300 rounded-2xl shadow-xl flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <img 
+                      src="/images/logos/me.png" 
+                      alt="Charlie Smith - Business Intelligence Leader" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Desktop Layout: Name only */}
+              <div className="hidden lg:block text-left">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-noir-900 mb-4">
+                  Charlie{' '}
+                  <span className="gradient-text">Smith</span>
+                </h1>
+              </div>
             </div>
 
-            {/* Dynamic Title */}
-            <div className="mb-8 overflow-hidden">
+
+            {/* Dynamic Title - Desktop */}
+            <div className="hidden lg:block mb-8 overflow-hidden">
               <TypeAnimation
                 sequence={[
                   'Business Intelligence Leader',
@@ -109,19 +164,19 @@ const Home = () => {
                 ]}
                 wrapper="h2"
                 speed={50}
-                className="text-2xl md:text-3xl lg:text-4xl font-medium text-noir-600 overflow-hidden"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium text-noir-600 overflow-hidden"
                 repeat={Infinity}
               />
             </div>
 
             {/* Description */}
-            <p className="text-lg md:text-xl text-noir-600 leading-relaxed mb-8 max-w-2xl">
+            <p className="text-base sm:text-lg md:text-xl text-noir-600 leading-relaxed mb-8 max-w-2xl">
               Combining strategic leadership with deep technical expertise to drive business transformation. 
               I specialize in SQL and advanced BI tools like Tableau and Power BI, with growing Python skills and AI integration to build scalable analytics solutions that empower data-driven decision making across organizations.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8">
               <Link to="/work" className="btn-primary">
                 View My Work
               </Link>
@@ -131,7 +186,7 @@ const Home = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mb-2 lg:mb-0">
               {socialLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
@@ -150,29 +205,27 @@ const Home = () => {
             </div>
           </motion.div>
 
-          {/* Right Side - Image */}
+          {/* Right Side - Image (Desktop only) */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="relative hidden lg:block"
           >
             <div className="relative z-10">
-              <div className="w-full max-w-lg h-96 lg:h-[500px] bg-gradient-to-br from-sage-200 to-sage-300 rounded-2xl shadow-2xl flex items-center justify-center mx-auto overflow-hidden">
-                {/* Placeholder for profile image */}
-                <div className="text-center p-8">
-                  <div className="w-24 h-24 bg-sage-400 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <svg className="w-12 h-12 text-noir-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                  </div>
-                  <p className="text-noir-600 text-sm">Profile Photo</p>
-                  <p className="text-neutral-500 text-xs mt-1">Coming Soon</p>
+              <div className="w-full max-w-lg h-80 sm:h-96 lg:h-[500px] bg-gradient-to-br from-sage-200 to-sage-300 rounded-2xl shadow-2xl flex items-center justify-center mx-auto overflow-hidden">
+                {/* Profile Image */}
+                <div className="w-full h-full flex items-center justify-center">
+                  <img 
+                    src="/images/logos/me.png" 
+                    alt="Charlie Smith - Business Intelligence Leader" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
             {/* Background decoration */}
-            <div className="absolute top-8 left-8 w-full max-w-lg h-96 lg:h-[500px] bg-gradient-to-br from-moss-200 to-moss-300 rounded-2xl -z-10"></div>
+            <div className="absolute top-6 left-6 sm:top-8 sm:left-8 w-full max-w-lg h-80 sm:h-96 lg:h-[500px] bg-gradient-to-br from-moss-200 to-moss-300 rounded-2xl -z-10"></div>
           </motion.div>
         </div>
       </div>

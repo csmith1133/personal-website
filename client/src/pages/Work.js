@@ -110,48 +110,49 @@ const Work = () => {
 
     loadResumeData();
   }, []);
-  const projects = [
-    {
-      id: 1,
-      title: 'E-commerce Platform',
-      description: 'A full-stack e-commerce solution built with React, Node.js, and PostgreSQL, featuring real-time inventory management.',
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'AWS'],
-      image: '/api/placeholder/600/400',
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/csmith1133/ecommerce',
-      featured: true
-    },
-    {
-      id: 2,
-      title: 'Data Pipeline Dashboard',
-      description: 'A real-time monitoring dashboard for data pipelines using Apache Airflow and custom React components.',
-      technologies: ['Python', 'Apache Airflow', 'React', 'D3.js', 'Docker'],
-      image: '/api/placeholder/600/400',
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/csmith1133/data-dashboard',
-      featured: true
-    },
-    {
-      id: 3,
-      title: 'Financial Analytics Tool',
-      description: 'Advanced financial data analysis platform with machine learning predictions and interactive visualizations.',
-      technologies: ['Python', 'FastAPI', 'React', 'TensorFlow', 'Snowflake'],
-      image: '/api/placeholder/600/400',
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/csmith1133/fintech-tool',
-      featured: false
-    },
-    {
-      id: 4,
-      title: 'Mobile Task Manager',
-      description: 'Cross-platform mobile application for team task management with real-time collaboration features.',
-      technologies: ['React Native', 'Firebase', 'Node.js', 'Socket.io'],
-      image: '/api/placeholder/600/400',
-      liveUrl: 'https://example.com',
-      githubUrl: 'https://github.com/csmith1133/task-manager',
-      featured: false
-    }
-  ];
+  // Projects data - temporarily commented out during maintenance
+  // const projects = [
+  //   {
+  //     id: 1,
+  //     title: 'E-commerce Platform',
+  //     description: 'A full-stack e-commerce solution built with React, Node.js, and PostgreSQL, featuring real-time inventory management.',
+  //     technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'AWS'],
+  //     image: '/api/placeholder/600/400',
+  //     liveUrl: 'https://example.com',
+  //     githubUrl: 'https://github.com/csmith1133/ecommerce',
+  //     featured: true
+  //   },
+  //   {
+  //     id: 2,
+  //     title: 'Data Pipeline Dashboard',
+  //     description: 'A real-time monitoring dashboard for data pipelines using Apache Airflow and custom React components.',
+  //     technologies: ['Python', 'Apache Airflow', 'React', 'D3.js', 'Docker'],
+  //     image: '/api/placeholder/600/400',
+  //     liveUrl: 'https://example.com',
+  //     githubUrl: 'https://github.com/csmith1133/data-dashboard',
+  //     featured: true
+  //   },
+  //   {
+  //     id: 3,
+  //     title: 'Financial Analytics Tool',
+  //     description: 'Advanced financial data analysis platform with machine learning predictions and interactive visualizations.',
+  //     technologies: ['Python', 'FastAPI', 'React', 'TensorFlow', 'Snowflake'],
+  //     image: '/api/placeholder/600/400',
+  //     liveUrl: 'https://example.com',
+  //     githubUrl: 'https://github.com/csmith1133/fintech-tool',
+  //     featured: false
+  //   },
+  //   {
+  //     id: 4,
+  //     title: 'Mobile Task Manager',
+  //     description: 'Cross-platform mobile application for team task management with real-time collaboration features.',
+  //     technologies: ['React Native', 'Firebase', 'Node.js', 'Socket.io'],
+  //     image: '/api/placeholder/600/400',
+  //     liveUrl: 'https://example.com',
+  //     githubUrl: 'https://github.com/csmith1133/task-manager',
+  //     featured: false
+  //   }
+  // ];
 
   // Function to get company logo URL (supports both PNG and SVG)
   const getCompanyLogo = (company) => {
@@ -302,137 +303,99 @@ const Work = () => {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-8">
-            {projects.filter(project => project.featured).map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="card group overflow-hidden"
-              >
-                {/* Project Image */}
-                <div className="h-48 bg-gradient-to-br from-neutral-200 to-neutral-300 relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <svg className="w-16 h-16 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Project Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-noir-900 mb-3 group-hover:text-moss-600 transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-noir-600 mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-moss-100 text-moss-700 text-sm font-medium rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Links */}
-                  <div className="flex gap-4">
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-moss-600 hover:text-moss-700 font-medium transition-colors duration-300"
-                    >
-                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                      Live Demo
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-noir-600 hover:text-noir-900 font-medium transition-colors duration-300"
-                    >
-                      <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                      </svg>
-                      GitHub
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Other Projects */}
+          {/* Under Construction Notice */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center mb-8"
+            transition={{ duration: 0.8 }}
+            className="relative"
           >
-            <h3 className="text-2xl font-bold text-noir-900 mb-2">Other Projects</h3>
-            <p className="text-noir-600">Additional work showcasing diverse technical skills</p>
-          </motion.div>
+            <div className="max-w-4xl mx-auto">
+              {/* Construction Animation */}
+              <div className="relative bg-gradient-to-br from-ivory-100 to-ivory-200 rounded-2xl p-12 border-2 border-dashed border-moss-300 overflow-hidden">
+                {/* Animated construction elements */}
+                <div className="absolute top-4 right-4 animate-bounce">
+                  <svg className="w-8 h-8 text-moss-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                
+                <div className="absolute bottom-4 left-4 animate-pulse">
+                  <svg className="w-6 h-6 text-moss-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {projects.filter(project => !project.featured).map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card p-6 group hover:shadow-xl transition-all duration-300"
-              >
-                <h4 className="text-xl font-bold text-noir-900 mb-2 group-hover:text-moss-600 transition-colors duration-300">
-                  {project.title}
-                </h4>
-                <p className="text-noir-600 mb-4">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-2 py-1 bg-ivory-200/60 text-noir-600 text-xs font-medium rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.technologies.length > 3 && (
-                    <span className="px-2 py-1 bg-ivory-200/60 text-noir-600 text-xs font-medium rounded">
-                      +{project.technologies.length - 3} more
-                    </span>
-                  )}
+                <div className="text-center relative z-10">
+                  {/* Main Icon */}
+                  <div className="mb-8">
+                    <div className="relative inline-block">
+                      <div className="w-20 h-20 bg-gradient-to-br from-moss-400 to-moss-600 rounded-full flex items-center justify-center shadow-lg">
+                        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                      </div>
+                      {/* Pulsing ring */}
+                      <div className="absolute inset-0 w-20 h-20 bg-moss-400 rounded-full animate-ping opacity-20"></div>
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-3xl font-bold text-noir-900 mb-4">
+                    Portfolio Under Construction
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-lg text-noir-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                    I'm currently curating and building out my project portfolio with detailed case studies, 
+                    technical implementations, and measurable business outcomes. This section will showcase 
+                    my most impactful work across data analytics, business intelligence, and strategic initiatives.
+                  </p>
+
+                  {/* Feature Preview Cards */}
+                  <div className="grid md:grid-cols-3 gap-6 mb-8">
+                    <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-moss-200">
+                      <div className="w-8 h-8 bg-moss-100 rounded-lg flex items-center justify-center mb-3 mx-auto">
+                        <svg className="w-4 h-4 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      </div>
+                      <h4 className="font-semibold text-noir-900 mb-1">Data Dashboards</h4>
+                      <p className="text-sm text-noir-600">Interactive BI solutions</p>
+                    </div>
+                    
+                    <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-moss-200">
+                      <div className="w-8 h-8 bg-moss-100 rounded-lg flex items-center justify-center mb-3 mx-auto">
+                        <svg className="w-4 h-4 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                      <h4 className="font-semibold text-noir-900 mb-1">Automation</h4>
+                      <p className="text-sm text-noir-600">Process optimization</p>
+                    </div>
+                    
+                    <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-moss-200">
+                      <div className="w-8 h-8 bg-moss-100 rounded-lg flex items-center justify-center mb-3 mx-auto">
+                        <svg className="w-4 h-4 text-moss-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h4 className="font-semibold text-noir-900 mb-1">Strategy</h4>
+                      <p className="text-sm text-noir-600">Business initiatives</p>
+                    </div>
+                  </div>
+
+                  {/* Coming Soon Badge */}
+                  <div className="inline-flex items-center bg-gradient-to-r from-moss-500 to-moss-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg">
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Coming Soon
+                  </div>
                 </div>
-                <div className="flex gap-4 text-sm">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-moss-600 hover:text-moss-700 font-medium"
-                  >
-                    View Project
-                  </a>
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-noir-600 hover:text-noir-900 font-medium"
-                  >
-                    Code
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -456,7 +419,7 @@ const Work = () => {
           <div className="max-w-7xl mx-auto">
             <div className="relative">
               {/* Timeline line */}
-              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-moss-200 transform md:-translate-x-0.5"></div>
+              <div className="absolute left-1 md:left-1/2 top-0 bottom-0 w-0.5 bg-moss-200 transform md:-translate-x-0.5"></div>
 
               {loading ? (
                 <motion.div
@@ -490,20 +453,17 @@ const Work = () => {
                   className="relative mb-12"
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-moss-500 rounded-full transform -translate-x-2 md:-translate-x-2 flex items-center justify-center z-10 mt-6">
+                  <div className="absolute left-1 md:left-1/2 w-4 h-4 bg-moss-500 rounded-full transform -translate-x-2 md:-translate-x-2 flex items-center justify-center z-10 mt-6">
                     <div className="w-2 h-2 bg-white rounded-full"></div>
                   </div>
 
                   {/* Content */}
                   <div 
-                    className={`card p-6 ml-16 md:ml-0 ${
+                    className={`card p-6 ml-6 md:ml-0 w-full md:w-[46%] ${
                       index % 2 === 0 
                         ? '' 
                         : 'md:ml-auto'
                     }`}
-                    style={{
-                      width: '46%'
-                    }}
                   >
                     <div className="flex items-center mb-4">
                       <div className="mr-3">{getTypeIcon(item.type)}</div>
