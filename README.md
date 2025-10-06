@@ -262,5 +262,3 @@ If you have any questions or need help with setup, feel free to reach out:
 - GitHub: [@csmith1133](https://github.com/csmith1133)
 
 ---
-
-**Made with ❤️ by Charles Smith**
