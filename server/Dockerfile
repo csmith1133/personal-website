@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y \
     texlive-fonts-extra \
     texlive-luatex \
     fonts-font-awesome \
-    fonts-source-sans-pro \
     && rm -rf /var/lib/apt/lists/* \
     && fc-cache -fv
 
