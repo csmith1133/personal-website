@@ -169,6 +169,9 @@ const Work = () => {
 
   // Function to get certification logo based on role title
   const getCertificationLogo = (roleTitle) => {
+    if (roleTitle.includes('Power BI')) {
+      return '/images/logos/microsoft-certified-associate-badge.svg';
+    }
     if (roleTitle.includes('PMP') || roleTitle.includes('Project Management Professional')) {
       return '/images/logos/pmi.png';
     }
