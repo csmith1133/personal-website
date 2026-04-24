@@ -2,7 +2,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import ScrollReveal from '../components/ScrollReveal';
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
