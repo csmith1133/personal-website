@@ -255,67 +255,24 @@ app.get('/api/resume/download', async (req, res) => {
     const resumePath = path.join(__dirname, 'resume');
     const outputPath = path.join(resumePath, 'output');
     const pdfPath = path.join(outputPath, 'resume.pdf');
-    
-    // Check if PDF already exists and is recent (within 1 hour)
-    if (await fs.pathExists(pdfPath)) {
-      const stats = await fs.stat(pdfPath);
-      const now = new Date();
-      const fileAge = now - stats.mtime;
-      const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
-      
-      if (fileAge < oneHour) {
-        // Serve cached PDF
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'attachment; filename="Charlie_Smith_Resume.pdf"');
-        const pdfStream = fs.createReadStream(pdfPath);
-        pdfStream.pipe(res);
-        return;
-      }
-    }
-    
-    // Ensure output directory exists
+
     await fs.ensureDir(outputPath);
-    
-    // Optimized LaTeX compilation with faster options
-    const compileCommand = `cd "${resumePath}" && xelatex -interaction=nonstopmode -output-directory="${outputPath}" -halt-on-error resume.tex`;
-    
-    exec(compileCommand, { timeout: 30000 }, async (error, stdout, stderr) => {
-      if (error) {
-        console.error('LaTeX compilation error:', error);
-        console.error('LaTeX stdout:', stdout);
-        console.error('LaTeX stderr:', stderr);
-        return res.status(500).json({
-          success: false,
-          message: 'Failed to generate resume PDF',
-          error: 'LaTeX compilation failed',
-          details: stderr || stdout || error.message
-        });
-      }
-      
-      // Check if PDF was generated
+
+    const compileCommand = `/Library/TeX/texbin/xelatex -interaction=nonstopmode -output-directory="${outputPath}" resume.tex`;
+
+    exec(compileCommand, { cwd: resumePath, timeout: 30000, env: { ...process.env, PATH: `/Library/TeX/texbin:${process.env.PATH}` } }, async (error) => {
       if (await fs.pathExists(pdfPath)) {
-        // Set headers for PDF download
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename="Charlie_Smith_Resume.pdf"');
-        
-        // Stream the PDF file
-        const pdfStream = fs.createReadStream(pdfPath);
-        pdfStream.pipe(res);
+        fs.createReadStream(pdfPath).pipe(res);
       } else {
-        res.status(500).json({
-          success: false,
-          message: 'PDF generation failed',
-          error: 'Output file not found'
-        });
+        console.error('LaTeX compilation failed, no PDF produced:', error?.message);
+        res.status(500).json({ success: false, message: 'Failed to generate resume PDF' });
       }
     });
-    
   } catch (error) {
     console.error('Resume generation error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Internal server error during resume generation'
-    });
+    res.status(500).json({ success: false, message: 'Internal server error during resume generation' });
   }
 });
 

@@ -1,179 +1,132 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === '/';
+  const onGreen = isHome && !scrolled;
 
-  const leftNavItems = [
+  const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-  ];
-
-  const rightNavItems = [
     { name: 'Work', path: '/work' },
     { name: 'Contact', path: '/contact' },
   ];
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const handleMobileNavClick = () => {
-    setIsMobileMenuOpen(false);
-  };
+  useEffect(() => { setMenuOpen(false); }, [location]);
+
+  const barColor = onGreen ? '#fff' : '#1a1a1a';
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 bg-ivory-300"
-    >
-      <div className="modern-container">
-        <div className="flex items-center h-20 relative">
-          {/* Left Navigation */}
-          <div className="hidden md:flex flex-1 justify-end items-center space-x-8 pr-8">
-            {leftNavItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 + 0.2 }}
-              >
-                <Link
-                  to={item.path}
-                  className={`nav-link ${
-                    location.pathname === item.path ? 'active' : ''
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Centered Logo - Desktop Only */}
-          <div className="hidden md:block flex-shrink-0 px-8 relative z-30">
-            <Link to="/" className="block">
-              <img 
-                src="/images/logos/script_name.png" 
-                alt="Charlie Smith" 
-                className="h-28 w-auto object-contain"
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? 'bg-white/90 backdrop-blur-xl shadow-[0_2px_30px_-10px_rgba(0,0,0,0.1)]'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="modern-container">
+          <div className="flex items-center justify-between h-24">
+            <Link to="/" className="block relative z-10">
+              <img
+                src="/images/logos/script_name.png"
+                alt="Charlie Smith"
+                className={`h-16 transition-all duration-500 ${onGreen ? 'brightness-0 invert' : ''}`}
               />
             </Link>
-          </div>
 
-          {/* Right Navigation */}
-          <div className="hidden md:flex flex-1 justify-start items-center space-x-8 pl-8">
-            {rightNavItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 + 0.25 }}
-              >
-                <Link
-                  to={item.path}
-                  className={`nav-link ${
-                    location.pathname === item.path ? 'active' : ''
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button & Logo for Mobile */}
-          <div className="md:hidden flex items-center justify-between w-full">
-            {/* Mobile Logo */}
-            <Link to="/" className="block">
-              <img 
-                src="/images/logos/initials.png" 
-                alt="CS" 
-                className="h-16 w-auto object-contain"
-              />
-            </Link>
-            
-            {/* Menu Button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-3 text-noir-700 hover:bg-ivory-200/30 transition-all duration-300"
-            >
-              <AnimatePresence mode="wait">
-                {isMobileMenuOpen ? (
-                  <motion.svg
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </motion.svg>
-                ) : (
-                  <motion.svg
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  </motion.svg>
-                )}
-              </AnimatePresence>
-            </motion.button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-ivory-300"
-          >
-            <div className="px-6 py-4 space-y-2">
-              {[...leftNavItems, ...rightNavItems].map((item, index) => (
+            <div className="hidden md:flex items-center space-x-10">
+              {navItems.map((item, i) => (
                 <motion.div
                   key={item.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 + 0.3 }}
                 >
                   <Link
                     to={item.path}
-                    onClick={handleMobileNavClick}
-                    className={`block w-full text-left px-4 py-3 text-lg font-medium transition-all duration-300 rounded-xl ${
-                      location.pathname === item.path 
-                        ? 'text-noir-900 bg-ivory-400/80' 
-                        : 'text-noir-700 hover:text-noir-900 hover:bg-ivory-200/80'
+                    className={`font-medium relative text-sm uppercase tracking-widest transition-colors duration-500 ${
+                      onGreen
+                        ? location.pathname === item.path ? 'text-unt-lime' : 'text-white/70 hover:text-white'
+                        : `nav-link ${location.pathname === item.path ? 'active' : ''}`
                     }`}
                   >
                     {item.name}
                   </Link>
                 </motion.div>
               ))}
-              
             </div>
+
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5 z-[60]"
+              aria-label="Menu"
+            >
+              <motion.span
+                animate={menuOpen ? { rotate: 45, y: 5, backgroundColor: '#fff' } : { rotate: 0, y: 0, backgroundColor: barColor }}
+                className="block w-6 h-[2px] origin-center"
+              />
+              <motion.span
+                animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
+                className="block w-6 h-[2px]"
+                style={{ backgroundColor: menuOpen ? '#fff' : barColor }}
+              />
+              <motion.span
+                animate={menuOpen ? { rotate: -45, y: -5, backgroundColor: '#fff' } : { rotate: 0, y: 0, backgroundColor: barColor }}
+                className="block w-6 h-[2px] origin-center"
+              />
+            </button>
+          </div>
+        </div>
+      </motion.nav>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-unt-green flex items-center justify-center"
+          >
+            <nav className="flex flex-col items-center gap-6">
+              {navItems.map((item, i) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  <Link
+                    to={item.path}
+                    onClick={() => setMenuOpen(false)}
+                    className={`font-display text-5xl transition-colors duration-300 ${
+                      location.pathname === item.path ? 'text-unt-lime' : 'text-white/80 hover:text-white'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   );
 };
 
