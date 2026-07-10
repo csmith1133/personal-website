@@ -1,0 +1,32 @@
+# This site's service definitions for the elitedesk docker compose stack.
+# The stack's central file (ReadableCode/Docker: docker_compose_projects.yaml)
+# pulls this file in via `include:` with project_directory set to this repo's
+# root, so the services deploy exactly as they did when they were defined
+# centrally — same compose project, same network, same container names (which
+# the SWAG reverse proxy resolves) — but the definitions now live with the
+# code and deploy automatically when this repo's main branch changes.
+#
+# server/.env is NOT in git (gitignored): on the host it is a symlink to a
+# credentials repo, deployed by that repo's manifest. Relative paths below
+# resolve from this repo's root.
+services:
+  charlie-personal-website-backend:
+    image: charlie_personal_website_backend_image
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: charlie_personal_website_backend
+    restart: unless-stopped
+    env_file:
+      - ./server/.env
+    ports:
+      - "8003:5000"
+  charlie-personal-website-frontend:
+    image: charlie_personal_website_frontend_image
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: charlie_personal_website_frontend
+    restart: unless-stopped
+    ports:
+      - "8083:3000"
